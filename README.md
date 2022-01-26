@@ -15,7 +15,7 @@ En caso de que el usuario quiera comprar o vender un producto, contactar con el 
 - #### Cliente
   Será quien navegue por la página y podrá ver los productos disponibles. Una vez que se haya registrado o iniciado sesión podrá interactuar con ellos. El cliente tendrá un nombre (único), contraseña y saldo.
 - #### Vendedor
-  Será quien ponga en venta el producto en la página. El vendedor tendrá Nombre, contraseña, galería y saldo.
+  Será quien ponga en venta el producto en la página. El vendedor tendrá nombre (único), contraseña, galería y saldo.
 ## Funcionalidades del Servicio Interno
 - El cliente podrá comprar, valorar, contactar con el vendedor, poner una reseña y recibirá correos electrónicos ya sean de carácter publicitario, informativo o por alguna actividad realizada con su cuenta. 
 - El vendedor podrá vender, contactar con el cliente, recibir correos eléctronicos de carácter publicitario, informativo o por alguna actividad realizada con su cuenta y mandar correos a clientes sobre los productos o pedidos.
