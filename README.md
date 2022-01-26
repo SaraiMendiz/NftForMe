@@ -1,6 +1,6 @@
 # NftForMe
 ## 📝Descripción
-NftForMe es una página Web donde se podrán comprar o vender NFTs ( Non-Fungible Token). �
+NftForMe es una página Web donde se podrán comprar o vender NFTs ( Non-Fungible Token). 
 ## 🔓Funcionalidades Públicas
 Los usuarios podrán ver el precio de los productos (NFTs) y sus características sin necesidad de iniciar sesión.
 ## 🔐Funcionalidades Privadas
