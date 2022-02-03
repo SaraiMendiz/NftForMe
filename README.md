@@ -19,3 +19,5 @@ En caso de que el usuario quiera comprar o vender un producto y contactar con el
 ## 🔧Funcionalidades del Servicio Interno
 - El cliente recibir correos electrónicos ya sean de carácter publicitario, informativo o por alguna actividad realizada con su cuenta. 
 - El vendedor podrá recibir correos eléctronicos de carácter publicitario, informativo o por alguna actividad realizada con su cuenta y mandar correos a clientes sobre los productos o pedidos.
+-
+-
