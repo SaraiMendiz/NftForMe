@@ -5,7 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 @Entity
-public class categoriaNaturaleza implements Producto{
+public class categoriaNaturaleza{
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private String nombre;

@@ -6,7 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class categoriaOtros implements Producto{
+public class categoriaOtros{
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private String nombre;
