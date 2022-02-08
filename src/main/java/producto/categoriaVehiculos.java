@@ -1,6 +1,13 @@
 package producto;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+@Entity
 public class categoriaVehiculos implements Producto{
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private String nombre;
 	private float precio;
 	private int ID;
