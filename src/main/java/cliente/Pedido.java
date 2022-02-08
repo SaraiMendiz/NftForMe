@@ -1,9 +1,17 @@
 package cliente;
 
 import java.util.ArrayList;
-import producto.Producto;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+import producto.Producto;
+@Entity
 public class Pedido {
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private ArrayList<Producto> productos;
 	
 	public Pedido() {
