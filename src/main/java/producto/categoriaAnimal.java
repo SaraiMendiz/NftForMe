@@ -1,6 +1,8 @@
 package producto;
 
 public class categoriaAnimal implements Producto{
+	
+	
 	private String nombre;
 	private float precio;
 	private int ID;
