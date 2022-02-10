@@ -34,11 +34,4 @@ public class Cliente {
 			return true;
 		}
 	}
-	public boolean pagar() {
-		float total = pedido.calcularTotal();
-		if(this.restarSaldo(total) == true) {
-			return true;
-		}
-		else return false;
-	}
 }
