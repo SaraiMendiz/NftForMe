@@ -9,10 +9,10 @@ import javax.persistence.Id;
 public class Cliente {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private String nombre;
-	private int ID;
-	private float saldo;
-	private Pedido pedido;
+	 String nombre;
+	 int ID;
+	 float saldo;
+	 Pedido pedido;
 	
 	public Cliente(String nombre, int ID) {
 		this.nombre = nombre;
@@ -23,6 +23,11 @@ public class Cliente {
 	//si el cliente quiere añadir saldo a su cuenta
 	public void anadirSaldo(float cantidad) {
 		saldo += cantidad;
+	}
+	
+	public String getnombre() {
+		
+		return nombre;
 	}
 	//a la hora de realizar una compra se restara el saldo y se comprobara si tiene el suficiente para poder realizarla
 	public boolean restarSaldo(float cantidad) {
