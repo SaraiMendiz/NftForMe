@@ -15,8 +15,8 @@
       </a>
 
       <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-        <li><a href="#" class="nav-link px-2 link-secondary">Home</a></li>
-        <li><a href="#" class="nav-link px-2 link-dark">Features</a></li>
+        <li><a href="/main" class="nav-link px-2 link-secondary">Home</a></li>
+        <li><a href="/productos" class="nav-link px-2 link-dark">Productos</a></li>
         <li><a href="#" class="nav-link px-2 link-dark">Pricing</a></li>
         <li><a href="#" class="nav-link px-2 link-dark">FAQs</a></li>
         <li><a href="#" class="nav-link px-2 link-dark">About</a></li>
@@ -28,8 +28,45 @@
       </div>
     </header>
   </div>
+  
+  <div class="container">
+  <img src="https://i.ibb.co/PDW1x84/ntf-00.jpg" class="img-fluid" alt="Responsive image">
+  </div>
+  
+  
+  <div class="container">
+  <div class="row">
+    <div class="col-12">
+		<table class="table table-image">
+		  <thead>
+		    <tr>
+		      <th scope="col">Day</th>
+		      <th scope="col">Image</th>
+		      <th scope="col">Article Name</th>
+		      <th scope="col">Author</th>
+		      <th scope="col">Precio</th>
+		      <th scope="col">Categoria</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		  {{#producto}}
+		    <tr>
+		      <th scope="row">1</th>
+		      <td class="w-25">
+			      <img src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/sheep-3.jpg" class="img-fluid img-thumbnail" alt="Sheep">
+		      </td>
+		      <td>{{nombre}}</td>
+		      <td>{{autor}}</td>
+		      <td>{{precio}}</td>
+		      <td>{{categoria}}</td>
+		    </tr>
+		     {{/producto}}
+		  </tbody>
+		</table>   
+    </div>
+  </div>
+</div>
 
 </body>
 </head>
 </html>
-	
