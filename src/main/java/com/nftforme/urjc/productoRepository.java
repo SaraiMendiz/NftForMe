@@ -7,9 +7,9 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 //@Repository
-public interface productoRepository extends JpaRepository<categoriaAnimal,Long>{
+public interface productoRepository extends JpaRepository<Producto,Long>{
 
-	List<categoriaAnimal> findByCategoria(String categoria);
-	List<categoriaAnimal> findByNombre(String nombre);
+	List<Producto> findByNombre(String nombre);
+	List<Producto> findByCategoria(String categoria);
 	
 }

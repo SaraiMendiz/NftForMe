@@ -15,7 +15,7 @@ public class Main {
 	
 	@GetMapping("/")
 	public String main(Model model) {
-		List <categoriaAnimal> todos = repository.findAll();
+		List <Producto> todos = repository.findAll();
 		model.addAttribute("producto", todos);
 		return "main";
 	}

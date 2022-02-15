@@ -23,8 +23,8 @@ public class productosController {
 	@PostConstruct
 	public void init() {
 		listadoHashSet = new HashSet<>();
-		List <categoriaAnimal> todosCat = repository.findAll();
-		for( categoriaAnimal animal : todosCat) {
+		List <Producto> todosCat = repository.findAll();
+		for( Producto animal : todosCat) {
 			String eString = animal.getCategoria();
 			listadoHashSet.add(eString);
 		}
@@ -32,7 +32,7 @@ public class productosController {
 	
 	@GetMapping("/productos")
 	public String main(Model model) {
-		List <categoriaAnimal> todos = repository.findAll();
+		List <Producto> todos = repository.findAll();
 		model.addAttribute("producto", todos);
 		model.addAttribute("filtro", listadoHashSet);
 		return "productos";
@@ -41,7 +41,7 @@ public class productosController {
 	@GetMapping("/productos/{categoria}")
 	public String categoria(Model model,@PathVariable String categoria) {
 		
-		List <categoriaAnimal> categoriaAnimals = repository.findByCategoria(categoria);
+		List <Producto> categoriaAnimals = repository.findByCategoria(categoria);
 		model.addAttribute("categoriaP", categoriaAnimals);
 		model.addAttribute("filtro", listadoHashSet);
 		return "ProductosCategoria";
@@ -50,7 +50,7 @@ public class productosController {
 	@GetMapping("/productos/ver/{nombre}")
 	public String productoVer(Model model,@PathVariable String nombre) {
 		
-		List <categoriaAnimal> nombreAnimals = repository.findByNombre(nombre);
+		List <Producto> nombreAnimals = repository.findByNombre(nombre);
 		model.addAttribute("nombreP", nombreAnimals);
 		return "verProducto";
 	}

@@ -7,11 +7,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 @Entity
 
-public class categoriaAnimal{
+public class Producto{
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name = "id", length = 100)
-	private int id;
+	private Long id;
 	@Column(name = "nombre", length = 100, unique = true)
 	private String nombre;
 	@Column(name = "precio", length = 100)
@@ -27,17 +27,16 @@ public class categoriaAnimal{
 	
 	
 	
-	public categoriaAnimal(String nombre, float precio, String autor, String categoria) {
+	public Producto(String nombre, float precio, String autor, String categoria) {
 		
 		this.nombre = nombre;
 		this.precio = precio;
-		this.id= generador_id++;
 		this.comprado = false;
 		this.autor = autor;
 		this.categoria=categoria;
 	}
 	
-	public categoriaAnimal() {}
+	public Producto() {}
 	
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
@@ -51,10 +50,10 @@ public class categoriaAnimal{
 	public float getPrecio() {
 		return precio;
 	}
-	public void setID(int ID) {
+	public void setID(Long ID) {
 		this.id = ID;
 	}
-	public int getID() {
+	public Long getID() {
 		return id;
 	}
 	public void setAutor(String autor) {
