@@ -52,6 +52,6 @@ public class productosController {
 		
 		List <Producto> nombreAnimals = repository.findByNombre(nombre);
 		model.addAttribute("nombreP", nombreAnimals);
-		return "verProducto";
+		return "VerProducto";
 	}
 }
