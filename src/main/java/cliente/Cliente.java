@@ -11,7 +11,7 @@ import javax.persistence.Id;
 
 import org.springframework.data.domain.Page;
 
-import com.nftforme.urjc.categoriaAnimal;
+import com.nftforme.urjc.Producto;
 
 @Entity
 public class Cliente {

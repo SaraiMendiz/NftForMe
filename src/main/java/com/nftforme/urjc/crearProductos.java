@@ -36,7 +36,7 @@ public class crearProductos {
 		return "crearProducto";
 	}
 	
-	@Mapping("/nuevook",method="POST")
+	@GetMapping("/nuevook")
 	public String nuevook(Model model,@RequestParam String nombre, @RequestParam String autor, @RequestParam float precio,@RequestParam String categoria) {
 		try {
 			productoRepositorys.save(new Producto(nombre,precio,autor,categoria));
