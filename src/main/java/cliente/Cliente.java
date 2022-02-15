@@ -1,42 +1,43 @@
 package cliente;
 
+import java.util.HashSet;
+import java.util.List;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import org.springframework.data.domain.Page;
+
+import com.nftforme.urjc.categoriaAnimal;
+
 @Entity
 public class Cliente {
+	
+	
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	 String nombre;
-	 int ID;
-	 float saldo;
-	 Pedido pedido;
+	@Column(name = "id", length = 100, unique = true)
+	int id;
+	@Column(name = "nombre", length = 100)
+	String nombre;
 	
-	public Cliente(String nombre, int ID) {
+	public Cliente(String nombre, int id) {
 		this.nombre = nombre;
-		this.ID = ID;
-		saldo = 0;
-		pedido = new Pedido();
+		this.id = id;
+		
 	}
 	//si el cliente quiere añadir saldo a su cuenta
-	public void anadirSaldo(float cantidad) {
-		saldo += cantidad;
-	}
 	
 	public String getnombre() {
 		
 		return nombre;
 	}
+	
+
 	//a la hora de realizar una compra se restara el saldo y se comprobara si tiene el suficiente para poder realizarla
-	public boolean restarSaldo(float cantidad) {
-		if(cantidad > saldo) {
-			return false;
-		}
-		else {
-			saldo -= cantidad;
-			return true;
-		}
-	}
+	
 }

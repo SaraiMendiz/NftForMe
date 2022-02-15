@@ -1,5 +1,10 @@
 package com.nftforme.urjc;
 
+import java.io.UnsupportedEncodingException;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,6 +27,8 @@ public class Producto{
 	private boolean comprado;
 	@Column(name = "categoria", length = 100)
 	private String categoria;
+	@Column(name = "hash", length = 100)
+	private String codigoHash;
 	
 	static int generador_id = 0;
 	
@@ -34,6 +41,19 @@ public class Producto{
 		this.comprado = false;
 		this.autor = autor;
 		this.categoria=categoria;
+		
+		
+        try {
+        	MessageDigest digest = MessageDigest.getInstance("SHA-1");
+            digest.reset();
+			digest.update(nombre.getBytes("utf8"));
+			String sha1 = String.format("%040x", new BigInteger(1, digest.digest()));
+			this.codigoHash=sha1;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        
 	}
 	
 	public Producto() {}
