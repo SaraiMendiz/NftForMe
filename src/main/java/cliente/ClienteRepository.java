@@ -7,9 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ClienteRepository extends JpaRepository<Cliente, Long> {
 
-	
-	
 			Page<Cliente> findBynombre(String user);
-			Page<Cliente> findByID (String id) ;
+			Page<Cliente> findById(int id) ;
 			
 }
