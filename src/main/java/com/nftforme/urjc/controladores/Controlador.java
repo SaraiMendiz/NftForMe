@@ -114,7 +114,7 @@ public class Controlador {
 	//ControladorProductos
 	
 	@PostConstruct
-	public void init1() {
+	public void init() {
 		listaProd = new HashSet<>();
 		List <Producto> todos = repoProd.findAll();
 		for(Producto temp : todos) {
@@ -190,16 +190,6 @@ public class Controlador {
 	}
 	
 	//ControladorProductosCliente
-	
-	@PostConstruct
-	public void init2() {
-		listaCli = new HashSet<>();
-		List <Producto> todosCat = repoProd.findAll();
-		for( Producto animal : todosCat) {
-			String eString = animal.getCategoria();
-			listaCli.add(eString);
-		}
-	}
 	
 	@GetMapping("/cliente/{idCliente}/productos")
 	public String main(Model model) {
