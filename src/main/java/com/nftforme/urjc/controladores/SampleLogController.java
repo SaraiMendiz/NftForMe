@@ -1,4 +1,4 @@
-package com.nftforme.urjc;
+package com.nftforme.urjc.controladores;
 
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;

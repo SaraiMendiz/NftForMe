@@ -1,10 +1,9 @@
-package com.nftforme.urjc;
+package com.nftforme.urjc.controladores;
 
 import java.util.HashSet;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.naming.InitialContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,46 +11,47 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import com.nftforme.urjc.objetos.Producto;
+import com.nftforme.urjc.repositorios.RepositorioProducto;
+
 @Controller
-public class productosController {
+public class ControladorProductos {
 	
-	HashSet<String> listadoHashSet;
+	HashSet<String> listaProd;
 	
 	@Autowired
-	private productoRepository repository;
+	private RepositorioProducto repoProd;
 	
 	@PostConstruct
 	public void init() {
-		listadoHashSet = new HashSet<>();
-		List <Producto> todosCat = repository.findAll();
-		for( Producto animal : todosCat) {
-			String eString = animal.getCategoria();
-			listadoHashSet.add(eString);
+		listaProd = new HashSet<>();
+		List <Producto> todos = repoProd.findAll();
+		for(Producto temp : todos) {
+			String eString = temp.getCategoria();
+			listaProd.add(eString);
 		}
 	}
 	
 	@GetMapping("/productos")
 	public String main(Model model) {
-		List <Producto> todos = repository.findAll();
+		List <Producto> todos = repoProd.findAll();
 		model.addAttribute("producto", todos);
-		model.addAttribute("filtro", listadoHashSet);
+		model.addAttribute("filtro", listaProd);
 		return "productos";
 	}
 	
 	@GetMapping("/productos/{categoria}")
 	public String categoria(Model model,@PathVariable String categoria) {
-		
-		List <Producto> categoriaAnimals = repository.findByCategoria(categoria);
+		List <Producto> categoriaAnimals = repoProd.findByCategoria(categoria);
 		model.addAttribute("categoriaP", categoriaAnimals);
-		model.addAttribute("filtro", listadoHashSet);
+		model.addAttribute("filtro", listaProd);
 		return "ProductosCategoria";
 	}
 	
 	@GetMapping("/productos/ver/{nombre}")
 	public String productoVer(Model model,@PathVariable String nombre) {
-		
-		List <Producto> nombreAnimals = repository.findByNombre(nombre);
+		List <Producto> nombreAnimals = repoProd.findByNombre(nombre);
 		model.addAttribute("nombreP", nombreAnimals);
-		return "verProducto";
+		return "VerProducto";
 	}
 }

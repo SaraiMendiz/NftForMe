@@ -8,35 +8,56 @@
 </head>
 <body>
 
-
-	
+{{#login}}
 <div class="container">
     <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
       <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
         <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
       </a>
-
-      <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+ 		
+ 	<ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+       
         <li><a href="/" class="nav-link px-2 link-secondary">Home</a></li>
         <li><a href="/productos" class="nav-link px-2 link-dark">Productos</a></li>
-        <li><a href="#" class="nav-link px-2 link-dark">Pricing</a></li>
-        <li><a href="#" class="nav-link px-2 link-dark">FAQs</a></li>
-        <li><a href="#" class="nav-link px-2 link-dark">About</a></li>
-       
-      </ul>
+        <li><a href="/ayuda" class="nav-link px-2 link-dark">Ayuda</a></li>
+        <li><a href="/quienessomos" class="nav-link px-2 link-dark">Quiénes somos</a></li>
+        <li><a href="/nuevoproducto" class="nav-link px-2 link-dark">Añadir Productos</a></li>
+        <li><a href="/mispedidos" class="nav-link px-2 link-dark">Mis pedidos</a></li>
+        <li><a href="/carrito" class="nav-link px-2 link-dark">Mi carrito</a></li>
+        
+   </ul>
 
-      <div class="col-md-3 text-end">
-        <button type="button" class="btn btn-outline-primary me-2">Login</button>
-        <button type="button" class="btn btn-primary">Sign-up</button>
-      </div>
-    </header>
-  </div>
-  
-  
-  
-  <div class="container">
-  
-  </div>
+     <div class="col-md-3 text-end">
+       <button onclick="window.location.href='/micuenta'" type="button" class="btn btn-outline-primary me-2">Mi cuenta</button>
+       <button onclick="window.location.href='/logout'" type="button" class="btn btn-primary">Cerrar sesión</button>
+     </div>
+   </header>
+</div>
+{{/login}}
+{{^login}}
+<div class="container">
+    <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+      <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
+        <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
+      </a>
+ 		
+ 	<ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+       
+        <li><a href="/" class="nav-link px-2 link-secondary">Home</a></li>
+        <li><a href="/productos" class="nav-link px-2 link-dark">Productos</a></li>
+        <li><a href="/ayuda" class="nav-link px-2 link-dark">Ayuda</a></li>
+        <li><a href="/quienessomos" class="nav-link px-2 link-dark">Quiénes somos</a></li>
+        <li><a href="/nuevoproducto" class="nav-link px-2 link-dark">Añadir Productos</a></li>
+        
+   </ul>
+
+     <div class="col-md-3 text-end">
+       <button onclick="window.location.href='/login'" type="button" class="btn btn-outline-primary me-2">Iniciar sesión</button>
+       <button type="button" class="btn btn-primary">Registrarse</button>
+     </div>
+   </header>
+</div>
+{{/login}}
 
 
 
@@ -53,7 +74,7 @@
             <h6 class="card-subtitle">globe type chair for rest</h6>
             <div class="row">
                 <div class="col-lg-5 col-md-5 col-sm-6">
-                    <div class="white-box text-center"><img src="https://via.placeholder.com/430x600/00CED1/000000" class="img-responsive"></div>
+                    <div class="white-box text-center"><img src="https://tecreview.tec.mx/wp-content/uploads/2020/10/yQpLpgw.jpeg" class="img-responsive"></div>
                 </div>
                 <div class="col-lg-7 col-md-7 col-sm-6">
                     <h4 class="box-title mt-5">{{nombre}}</h4>

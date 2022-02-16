@@ -1,7 +1,4 @@
-package cliente;
-
-import java.util.HashSet;
-import java.util.List;
+package com.nftforme.urjc.objetos;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,35 +6,31 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import org.springframework.data.domain.Page;
-
-import com.nftforme.urjc.Producto;
-
 @Entity
 public class Cliente {
-	
-	
-	
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name = "id", length = 100, unique = true)
-	int id;
+	Long id;
+	
 	@Column(name = "nombre", length = 100)
 	String nombre;
 	
-	public Cliente(String nombre, int id) {
+	public Cliente(String nombre, Long id) {
 		this.nombre = nombre;
 		this.id = id;
+	}
+	
+	public Cliente() {
 		
 	}
-	//si el cliente quiere añadir saldo a su cuenta
 	
-	public String getnombre() {
-		
+	public String getNombre() {
 		return nombre;
+	}	
+	
+	public Long getId() {
+		return id;
 	}
-	
-
-	//a la hora de realizar una compra se restara el saldo y se comprobara si tiene el suficiente para poder realizarla
-	
 }
