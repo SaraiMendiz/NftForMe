@@ -13,17 +13,17 @@ public class CarritoCompra {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name = "id", length = 100, unique = true)
-	Long id;
+	private Long id;
 	
 	@Column(name = "cliente", unique = true)
 	@OneToOne
-	Cliente cliente;
+	private Cliente cliente;
 	
 	@Column(name = "nombreArticulo", length = 100)
-	String nombreArticulo;
+	private String nombreArticulo;
 	
 	@Column(name = "precioArticulo", length = 100)
-	float precioArticulo;
+	private float precioArticulo;
 	
 	static Long generador_id = 0L;
 	

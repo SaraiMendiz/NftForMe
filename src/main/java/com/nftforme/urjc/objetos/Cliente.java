@@ -14,10 +14,10 @@ public class Cliente {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name = "id", length = 100, unique = true)
-	Long id;
+	private Long id;
 	
 	@Column(name = "nombre", length = 100)
-	String nombre;
+	private String nombre;
 	
 	public Cliente(String nombre, Long id) {
 		this.nombre = nombre;
