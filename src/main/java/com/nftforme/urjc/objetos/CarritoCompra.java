@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class CarritoCompra {
@@ -14,8 +15,9 @@ public class CarritoCompra {
 	@Column(name = "id", length = 100, unique = true)
 	Long id;
 	
-	@Column(name = "idCliente", length = 100)
-	Long idCliente;
+	@Column(name = "cliente", unique = true)
+	@OneToOne
+	Cliente cliente;
 	
 	@Column(name = "nombreArticulo", length = 100)
 	String nombreArticulo;
@@ -25,9 +27,9 @@ public class CarritoCompra {
 	
 	static Long generador_id = 0L;
 	
-	public CarritoCompra(Long id, String articulo, float precio) {
+	public CarritoCompra(Cliente cliente, String articulo, float precio) {
 		this.id = generador_id++;
-		this.idCliente=id;
+		this.cliente=cliente;
 		this.nombreArticulo=articulo;
 		this.precioArticulo=precio;
 	}
@@ -36,8 +38,8 @@ public class CarritoCompra {
 		
 	}
 
-	public Long getIdCliente() {
-		return idCliente;
+	public Cliente getCliente() {
+		return cliente;
 	}
 
 	public String getNombreArticulo() {
