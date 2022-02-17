@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.nftforme.urjc</groupId>
-	<artifactId>NftForMe-1</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>NftForMe-1</name>
-	<description>We are the world...We are the children...</description>
+	<artifactId>NFTForMe</artifactId>
+	<version>1.0</version>
+	<name>NFTForMe</name>
+	<description>Buy NFT's quick and easily</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>
