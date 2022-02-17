@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class PedidosCliente {
@@ -16,12 +17,10 @@ public class PedidosCliente {
 	@Column(name = "id", length = 100)
 	private Long id;
 	
-	@Column(name = "cliente", length = 100)
-	@ManyToOne //un pedido solo pertenece a un cliente, un cliente puede tener varios pedidos
+	@ManyToOne
 	private Cliente cliente;
 	
-	@Column(name = "producto", length = 100, unique = true)
-	@OneToMany //A un pedido pueden asociarse varios productos, un producto solo puede asociarse a un pedido.
+	@OneToOne
 	private Producto producto;
 	
 	public PedidosCliente(Cliente cliente, Producto producto) {

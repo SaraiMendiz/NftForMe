@@ -15,7 +15,6 @@ public class CarritoCompra {
 	@Column(name = "id", length = 100, unique = true)
 	private Long id;
 	
-	@Column(name = "cliente", unique = true)
 	@OneToOne
 	private Cliente cliente;
 	
