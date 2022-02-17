@@ -23,7 +23,7 @@ import com.nftforme.urjc.repositorios.RepositorioProducto;
 public class Controlador {
 	
 	private boolean login;
-	private HashSet<String> listaProd;
+	private HashSet<String> listaProd = new HashSet<>();
 	private HashSet<String> listaCli;
 	
 	@Autowired
@@ -115,7 +115,6 @@ public class Controlador {
 	
 	@PostConstruct
 	public void init() {
-		listaProd = new HashSet<>();
 		List <Producto> todos = repoProd.findAll();
 		for(Producto temp : todos) {
 			String eString = temp.getCategoria();
