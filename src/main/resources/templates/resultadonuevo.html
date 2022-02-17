@@ -55,10 +55,17 @@
    </header>
 </div>
 {{/login}}
-
-  <h2>Guardado correctamente</h2>
 <body> 
+{{#comprobar}}
+  <h2>Guardado correctamente</h2>
+
   <p>Log MySQL: {{resultado}}</p>
+  {{/comprobar}}
+ {{^comprobar}}
+ <h2>Guardado Incorrectamente</h2>
+
+  <p>Log MySQL: {{resultado}}</p>
+ {{/comprobar}}
 
 </body>
 </html>

@@ -60,13 +60,15 @@
 <body>
 	<form method='get' action="resultadonuevo">
       <p> Nombre del anuncio</p>
-		<input type='text' name='nombre'/>
+		<input type='text' name='nombre' required/>
        <p> Autor del anuncio</p>
-		<input type='text' name='autor'/>
+		<input type='text' name='autor' required/>
       <p> Precio del anuncio</p>
-		<input type='int' name='precio'/>
-	  <p> Categoria de la imagen</p>
-		<input type='text' name='categoria'/>
+		<input type='int' name='precio' required/>
+	  <p> Categoria del producto</p>
+		<input type='text' name='categoria' required/>
+		<p> Link de la imagen del producto</p>
+		<input type='text' name='imagen' required/>
 	
 		<input type='submit' value='Enviar'/>
 	</form>

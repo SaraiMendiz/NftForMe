@@ -115,6 +115,7 @@ public class Controlador {
 	
 	@PostConstruct
 	public void init() {
+		listaProd.clear();
 		List <Producto> todos = repoProd.findAll();
 		for(Producto temp : todos) {
 			String eString = temp.getCategoria();
@@ -173,10 +174,11 @@ public class Controlador {
 	}
 	
 	@GetMapping("/resultadonuevo")
-	public String resultadonuevo(Model model,@RequestParam String nombre, @RequestParam String autor, @RequestParam float precio,@RequestParam String categoria) {
+	public String resultadonuevo(Model model,@RequestParam String nombre, @RequestParam String autor, @RequestParam float precio,@RequestParam String categoria,@RequestParam String imagen) {
 		try {
-			repoProd.save(new Producto(nombre,precio,autor,categoria));
+			repoProd.save(new Producto(nombre,precio,autor,categoria,imagen));
 			model.addAttribute("resultado","ok");
+			model.addAttribute("comprobar",true);
 		}catch(Exception ex){
 			model.addAttribute("resultado","error");
 		}

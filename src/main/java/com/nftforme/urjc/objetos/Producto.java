@@ -31,18 +31,22 @@ public class Producto{
 	@Column(name = "categoria", length = 100)
 	private String categoria;
 	
+	@Column(name = "imagen", length = 300)
+	private String imagen;
+	
 	@Column(name = "codigoHash", length = 100)
 	private String codigoHash;
 	
 	static int generador_id = 0;
 	
-	public Producto(String nombre, float precio, String autor, String categoria) {
+	public Producto(String nombre, float precio, String autor, String categoria, String imagen) {
 		
 		this.nombre = nombre;
 		this.precio = precio;
 		this.comprado = false;
 		this.autor = autor;
 		this.categoria=categoria;
+		this.imagen=imagen;
 		
 		try {
         	MessageDigest digest = MessageDigest.getInstance("SHA-1");
@@ -85,5 +89,13 @@ public class Producto{
 	
 	public String getHash() {
 		return codigoHash;
+	}
+
+	public String getImagen() {
+		return imagen;
+	}
+
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
 	}
 }
