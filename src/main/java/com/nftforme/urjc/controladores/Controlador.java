@@ -1,7 +1,9 @@
 package com.nftforme.urjc.controladores;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 
 import javax.annotation.PostConstruct;
 
@@ -14,9 +16,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.nftforme.urjc.objetos.CarritoCompra;
 import com.nftforme.urjc.objetos.Cliente;
+import com.nftforme.urjc.objetos.PedidosCliente;
 import com.nftforme.urjc.objetos.Producto;
 import com.nftforme.urjc.repositorios.RepositorioCarroCompra;
 import com.nftforme.urjc.repositorios.RepositorioCliente;
+import com.nftforme.urjc.repositorios.RepositorioPedidosCliente;
 import com.nftforme.urjc.repositorios.RepositorioProducto;
 
 @Controller
@@ -35,8 +39,25 @@ public class Controlador {
 	@Autowired
 	private RepositorioCarroCompra carrito;
 	
+	@Autowired
+	private RepositorioPedidosCliente repoPedidos;
+	
 	public Controlador() {
 		login=false;
+	}
+	
+	@PostConstruct
+	private void init() {
+		repoProd.save(new Producto("Opel",900F,"Alvaro","Coches","https://img.remediosdigitales.com/81cf58/opel-astra-2021-03/840_560.jpeg"));
+		clienteRepo.save(new Cliente("user1"));
+		//carrito.save(new CarritoCompra(clienteRepo.findByUser("user1"),repoProd.findByNombre("Opel").get(0)));
+		//repoPedidos.save(new PedidosCliente(clienteRepo.findByUser("user1"),repoProd.findByNombre("Opel").get(0)));
+	}
+	
+	@GetMapping("/deletebag/{id}")
+	public String borrarCarrito(Model model,@PathVariable Long id) {
+		carrito.deleteById(carrito.findByProducto(repoProd.findById(id)).get().getId());
+		return "redirect:/carrito";
 	}
 	
 	@GetMapping("/login")
@@ -53,6 +74,12 @@ public class Controlador {
 	
 	@GetMapping("/mispedidos")
 	public String mispedidos(Model model) {
+		List<PedidosCliente> todos = repoPedidos.findAll();
+		ArrayList<Producto> productos = new ArrayList<Producto>();
+		for(PedidosCliente temp: todos) {
+			productos.add(temp.getProducto());
+		}
+		model.addAttribute("producto", productos);
 		if(login) {
 			model.addAttribute("login",true);
 		}else {
@@ -63,12 +90,57 @@ public class Controlador {
 	
 	@GetMapping("/carrito")
 	public String carrito(Model model) {
+		List<CarritoCompra> todos = carrito.findAll();
+		ArrayList<Producto> productos = new ArrayList<Producto>();
+		for(CarritoCompra temp: todos) {
+			productos.add(temp.getProducto());
+		}
+		model.addAttribute("producto", productos);
+		
 		if(login) {
 			model.addAttribute("login",true);
 		}else {
 			model.addAttribute("login",false);
 		}
 		return "carrito";
+	}
+	
+	@GetMapping("/buy/{id}")
+	public String addCarrito(Model model,@PathVariable Long id) {
+		Optional<Producto> temp = repoProd.findById(id);
+		
+		if(login) {
+			model.addAttribute("login",true);
+		}else {
+			model.addAttribute("login",false);
+		}
+		
+		if(carrito.findByProducto(temp).isPresent()){
+			model.addAttribute("resultado","Ya comprado");
+		}else {
+			carrito.save(new CarritoCompra(clienteRepo.findByUser("user1"),temp.get()));
+			model.addAttribute("resultado","Comprado correctamente");
+			model.addAttribute("comprobar",true);
+		}		
+		return "resultadoCarrito";
+	}
+	
+	@GetMapping("/moverapedido/{id}")
+	public String moverAPedido(Model model,@PathVariable Long id) {
+		repoPedidos.save(new PedidosCliente(clienteRepo.findByUser("user1"),carrito.findByProducto(repoProd.findById(id)).get().getProducto()));
+		carrito.deleteById(carrito.findByProducto(repoProd.findById(id)).get().getId());
+		return "redirect:/mispedidos";
+	}
+	
+	@GetMapping("/hash/{id}")
+	public String hash(Model model,@PathVariable Long id) {
+		model.addAttribute("hash", repoProd.findById(id).get().getHash());
+		if(login) {
+			model.addAttribute("login",true);
+		}else {
+			model.addAttribute("login",false);
+		}
+		return "verhash";
 	}
 	
 	@GetMapping("/")
@@ -113,8 +185,7 @@ public class Controlador {
 	
 	//ControladorProductos
 	
-	@PostConstruct
-	public void init() {
+	public void buscarCategorias() {
 		listaProd = new HashSet<>();
 		List <Producto> todos = repoProd.findAll();
 		for(Producto temp : todos) {
@@ -125,6 +196,7 @@ public class Controlador {
 	
 	@GetMapping("/productos")
 	public String productos(Model model) {
+		this.buscarCategorias();
 		List <Producto> todos = repoProd.findAll();
 		model.addAttribute("producto", todos);
 		model.addAttribute("filtro", listaProd);
@@ -192,7 +264,7 @@ public class Controlador {
 	
 	//ControladorProductosCliente
 	
-	@GetMapping("/cliente/{idCliente}/productos")
+	/*@GetMapping("/cliente/{idCliente}/productos")
 	public String main(Model model) {
 		List <Producto> todos = repoProd.findAll();
 		model.addAttribute("producto", todos);
@@ -242,7 +314,7 @@ public class Controlador {
 			//carrito.save(new carritoClientes(a.getnombre(), a.getnombre(),a.getPrecio()));
 		}
 	
-		List<CarritoCompra> todoCarrito = carrito.findBynombreArticulo(nomString);
+		//List<CarritoCompra> todoCarrito = carrito.findByNombre(nomString);
 		model.addAttribute("listaCarrito",todoCarrito);
 		if(login) {
 			model.addAttribute("login",true);
@@ -250,5 +322,5 @@ public class Controlador {
 			model.addAttribute("login",false);
 		}
 		return "comprar";
-	}
+	}*/
 }

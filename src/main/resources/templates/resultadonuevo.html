@@ -57,15 +57,14 @@
 {{/login}}
 <body> 
 {{#comprobar}}
-  <h2>Guardado correctamente</h2>
+  	<h2>Guardado correctamente</h2>
+	<p>Log MySQL: {{resultado}}</p>
+{{/comprobar}}
 
-  <p>Log MySQL: {{resultado}}</p>
-  {{/comprobar}}
- {{^comprobar}}
- <h2>Guardado Incorrectamente</h2>
-
-  <p>Log MySQL: {{resultado}}</p>
- {{/comprobar}}
+{{^comprobar}}
+ 	<h2>Error al guardar</h2>
+	<p>Log MySQL: {{resultado}}</p>
+{{/comprobar}}
 
 </body>
 </html>

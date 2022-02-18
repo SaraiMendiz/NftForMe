@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -18,19 +19,12 @@ public class CarritoCompra {
 	@OneToOne
 	private Cliente cliente;
 	
-	@Column(name = "nombreArticulo", length = 100)
-	private String nombreArticulo;
-	
-	@Column(name = "precioArticulo", length = 100)
-	private float precioArticulo;
-	
-	static Long generador_id = 0L;
-	
-	public CarritoCompra(Cliente cliente, String articulo, float precio) {
-		this.id = generador_id++;
+	@ManyToOne
+	private Producto producto;
+		
+	public CarritoCompra(Cliente cliente, Producto producto) {
 		this.cliente=cliente;
-		this.nombreArticulo=articulo;
-		this.precioArticulo=precio;
+		this.producto=producto;
 	}
 	
 	public CarritoCompra() {
@@ -41,13 +35,9 @@ public class CarritoCompra {
 		return cliente;
 	}
 
-	public String getNombreArticulo() {
-		return nombreArticulo;
+	public Producto getProducto() {
+		return producto;
 	}
-
-	public float getPrecio() {
-		return precioArticulo;
-	}	
 	
 	public Long getId() {
 		return id;

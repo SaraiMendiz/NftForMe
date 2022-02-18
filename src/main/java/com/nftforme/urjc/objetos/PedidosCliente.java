@@ -24,8 +24,8 @@ public class PedidosCliente {
 	private Producto producto;
 	
 	public PedidosCliente(Cliente cliente, Producto producto) {
-		cliente=cliente;
-		producto=producto;
+		this.cliente=cliente;
+		this.producto=producto;
 	}
 	
 	public PedidosCliente() {

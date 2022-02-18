@@ -57,6 +57,43 @@
 </div>
 {{/login}}
   
-<h2> Carrito </h2>
+
+
+<div class="container">
+<h2> Mi carrito </h2>
+  <div class="row">
+    <div class="col-12">
+		<table class="table table-image">
+		  <thead>
+		    <tr>
+		      <th scope="col">Número</th>
+		      <th scope="col">Imagen</th>
+		      <th scope="col">Nombre</th>
+		      <th scope="col">Autor</th>
+		      <th scope="col">Precio</th>
+		      <th scope="col">Categoría</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		  {{#producto}}
+		    <tr>
+		      <th scope="row">1</th>
+		      <td class="w-25">
+			      <a href="/productos/ver/{{nombre}}"><img src="{{imagen}}" class="img-fluid img-thumbnail" alt="Sheep"></a>
+		      </td>
+		      <td>{{nombre}}</td>
+		      <td>{{autor}}</td>
+		      <td>{{precio}}</td>
+		      <td>{{categoria}}</td>
+		      <td <button onclick="window.location.href='/deletebag/{{id}}'" type="button" class="btn btn-outline-primary me-2">Eliminar del carrito</button></td>
+		      <td <button onclick="window.location.href='/moverapedido/{{id}}'" type="button" class="btn btn-outline-primary me-2">Comprar</button></td>
+		    </tr>
+		     {{/producto}}
+		  </tbody>
+		</table>   
+    </div>
+  </div>
+</div>
+
 </head>
 </html>

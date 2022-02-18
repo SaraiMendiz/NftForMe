@@ -11,6 +11,6 @@ import com.nftforme.urjc.objetos.Cliente;
 @Service
 public interface RepositorioCliente extends JpaRepository<Cliente, Long> {
 
-	List<Cliente> findBynombre(String user);
+	Cliente findByUser(String user);
 	List<Cliente> findById(int id) ;	
 }

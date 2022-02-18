@@ -36,9 +36,7 @@ public class Producto{
 	
 	@Column(name = "codigoHash", length = 100)
 	private String codigoHash;
-	
-	static int generador_id = 0;
-	
+		
 	public Producto(String nombre, float precio, String autor, String categoria, String imagen) {
 		
 		this.nombre = nombre;
@@ -95,7 +93,7 @@ public class Producto{
 		return imagen;
 	}
 
-	public void setImagen(String imagen) {
-		this.imagen = imagen;
+	public void setComprado(boolean comprado) {
+		this.comprado=comprado;
 	}
 }
