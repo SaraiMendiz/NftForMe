@@ -49,6 +49,8 @@ public class Controlador {
 	@PostConstruct
 	private void init() {
 		repoProd.save(new Producto("Opel",900F,"Alvaro","Coches","https://img.remediosdigitales.com/81cf58/opel-astra-2021-03/840_560.jpeg"));
+		repoProd.save(new Producto("Peugeot",900F,"Alvaro","Coches","https://img.remediosdigitales.com/81cf58/opel-astra-2021-03/840_560.jpeg"));
+		repoProd.save(new Producto("Citroen",900F,"Alvaro","Coches","https://img.remediosdigitales.com/81cf58/opel-astra-2021-03/840_560.jpeg"));
 		clienteRepo.save(new Cliente("user1"));
 		//carrito.save(new CarritoCompra(clienteRepo.findByUser("user1"),repoProd.findByNombre("Opel").get(0)));
 		//repoPedidos.save(new PedidosCliente(clienteRepo.findByUser("user1"),repoProd.findByNombre("Opel").get(0)));
@@ -57,6 +59,8 @@ public class Controlador {
 	@GetMapping("/deletebag/{id}")
 	public String borrarCarrito(Model model,@PathVariable Long id) {
 		carrito.deleteById(carrito.findByProducto(repoProd.findById(id)).get().getId());
+		repoProd.findById(id).get().setComprado(false);
+		repoProd.save(repoProd.findById(id).get());
 		return "redirect:/carrito";
 	}
 	
@@ -115,10 +119,12 @@ public class Controlador {
 			model.addAttribute("login",false);
 		}
 		
-		if(carrito.findByProducto(temp).isPresent()){
+		if(temp.get().getComprado()){
 			model.addAttribute("resultado","Ya comprado");
 		}else {
 			carrito.save(new CarritoCompra(clienteRepo.findByUser("user1"),temp.get()));
+			temp.get().setComprado(true);
+			repoProd.save(temp.get());
 			model.addAttribute("resultado","Comprado correctamente");
 			model.addAttribute("comprobar",true);
 		}		
@@ -190,7 +196,9 @@ public class Controlador {
 		List <Producto> todos = repoProd.findAll();
 		for(Producto temp : todos) {
 			String eString = temp.getCategoria();
-			listaProd.add(eString);
+			if(!temp.getComprado()) {
+				listaProd.add(eString);
+			}	
 		}
 	}
 	
@@ -198,7 +206,13 @@ public class Controlador {
 	public String productos(Model model) {
 		this.buscarCategorias();
 		List <Producto> todos = repoProd.findAll();
-		model.addAttribute("producto", todos);
+		ArrayList<Producto> prodNoComprados = new ArrayList<Producto>();
+		for(Producto temp:todos) {
+			if(!temp.getComprado()) {
+				prodNoComprados.add(temp);
+			}
+		}
+		model.addAttribute("producto", prodNoComprados);
 		model.addAttribute("filtro", listaProd);
 		if(login) {
 			model.addAttribute("login",true);

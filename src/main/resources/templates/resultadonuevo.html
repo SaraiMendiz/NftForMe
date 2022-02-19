@@ -56,15 +56,14 @@
 </div>
 {{/login}}
 <body> 
+<div class="container">
 {{#comprobar}}
-  	<h2>Guardado correctamente</h2>
-	<p>Log MySQL: {{resultado}}</p>
+  	<h2>Producto añadido correctamente</h2>
 {{/comprobar}}
 
 {{^comprobar}}
  	<h2>Error al guardar</h2>
-	<p>Log MySQL: {{resultado}}</p>
 {{/comprobar}}
-
+</div>
 </body>
 </html>

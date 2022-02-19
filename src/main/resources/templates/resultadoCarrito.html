@@ -59,16 +59,19 @@
 </div>
 {{/login}}
 
-<div class="content1"> 
+
 {{#comprobar}}
-  	<h2>Añadido al carrito correctamente</h2>
-	<p>Log MySQL: {{resultado}}</p>
+	<div class="container"> 
+  		<h2>Añadido al carrito correctamente</h2>
+		<button onclick="window.location.href='/carrito'" type="button" class="btn btn-outline-primary me-2">Mi carrito</button>
+	</div>
 {{/comprobar}}
 
 {{^comprobar}}
- 	<h2>Error al añadir al carrito</h2>
-	<p>Log MySQL: {{resultado}}</p>
+	<div class="container"> 
+ 		<h2>Error al añadir al carrito</h2>
+ 	</div>
 {{/comprobar}}
 
-</div>
+
 </html>

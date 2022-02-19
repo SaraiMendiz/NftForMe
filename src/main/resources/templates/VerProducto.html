@@ -75,9 +75,11 @@
                     <h2 class="mt-5">
                         {{precio}}$<small class="text-success"></small>
                     </h2>
+                    {{#login}}
                     <button onclick="window.location.href='/buy/{{id}}'" class="btn btn-dark btn-rounded mr-1" data-toggle="tooltip" title="" data-original-title="Add to cart">
                         <i class="fa fa-shopping-cart"></i>
                     </button onclick="window.location.href='/buy/{{id}}'">
+                    {{/login}}
                     
                 </div>
                
