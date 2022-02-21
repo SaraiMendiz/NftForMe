@@ -28,7 +28,7 @@ public class Controlador {
 	
 	private boolean login;
 	private HashSet<String> listaProd;
-	private HashSet<String> listaCli;
+	private Cliente clienteActual;
 	
 	@Autowired
 	private RepositorioProducto repoProd;
@@ -64,8 +64,9 @@ public class Controlador {
 		return "redirect:/carrito";
 	}
 	
-	@GetMapping("/login")
-	public String login() {
+	@GetMapping("/login/{user}")
+	public String login(@PathVariable String user) {
+		this.clienteActual=clienteRepo.findByUser(user);
 		this.login=true;
 		return "redirect:/";
 	}
@@ -122,7 +123,7 @@ public class Controlador {
 		if(temp.get().getComprado()){
 			model.addAttribute("resultado","Ya comprado");
 		}else {
-			carrito.save(new CarritoCompra(clienteRepo.findByUser("user1"),temp.get()));
+			carrito.save(new CarritoCompra(this.clienteActual,temp.get()));
 			temp.get().setComprado(true);
 			repoProd.save(temp.get());
 			model.addAttribute("resultado","Comprado correctamente");
@@ -133,7 +134,7 @@ public class Controlador {
 	
 	@GetMapping("/moverapedido/{id}")
 	public String moverAPedido(Model model,@PathVariable Long id) {
-		repoPedidos.save(new PedidosCliente(clienteRepo.findByUser("user1"),carrito.findByProducto(repoProd.findById(id)).get().getProducto()));
+		repoPedidos.save(new PedidosCliente(this.clienteActual,carrito.findByProducto(repoProd.findById(id)).get().getProducto()));
 		carrito.deleteById(carrito.findByProducto(repoProd.findById(id)).get().getId());
 		return "redirect:/mispedidos";
 	}
@@ -225,7 +226,13 @@ public class Controlador {
 	@GetMapping("/productos/{categoria}")
 	public String categoria(Model model,@PathVariable String categoria) {
 		List <Producto> categoriaAnimals = repoProd.findByCategoria(categoria);
-		model.addAttribute("categoriaP", categoriaAnimals);
+		ArrayList<Producto> prodNoComprados = new ArrayList<Producto>();
+		for(Producto temp:categoriaAnimals) {
+			if(!temp.getComprado()) {
+				prodNoComprados.add(temp);
+			}
+		}
+		model.addAttribute("categoriaP", prodNoComprados);
 		model.addAttribute("filtro", listaProd);
 		if(login) {
 			model.addAttribute("login",true);
