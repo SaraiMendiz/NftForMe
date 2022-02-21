@@ -21,4 +21,15 @@ En caso de que el usuario quiera comprar o vender un producto y contactar con el
 ## 🔧Funcionalidades del Servicio Interno
 - El cliente recibir correos electrónicos ya sean de carácter publicitario, informativo o por alguna actividad realizada con su cuenta. 
 - El vendedor podrá recibir correos eléctronicos de carácter publicitario, informativo o por alguna actividad realizada con su cuenta y mandar correos a clientes sobre los productos o pedidos.
-## Diagrama de Navegación
+## 🌐Diagrama de Navegación
+#### 🔓Sin Iniciar Sesión
+![SinIniciarSesion](https://user-images.githubusercontent.com/73581636/154928904-e539dae5-97aa-4b12-abb0-ed81b8ed80da.png)
+#### 🔐Sesión Iniciada
+![SesiónIniciada](https://user-images.githubusercontent.com/73581636/154928850-ecfe911e-1837-4918-b931-3a622eee4894.png)
+## 🔷Diagrama Entidad/Relación
+![diagrama HTA - Página 1 (2)](https://user-images.githubusercontent.com/73581636/154920694-8410a963-9cc9-42b9-94c4-f19562532d98.jpeg)
+## 📜Diagramas UML
+#### 📁Objetos
+![DUMLObjetos](https://user-images.githubusercontent.com/73581636/154920519-15fc8a11-94c9-459f-b385-93224b497df2.png)
+#### 📁Controladores
+![DiagramaControllers](https://user-images.githubusercontent.com/73581636/154920399-ebd5fbc0-f363-46c3-9683-3cd2f4f13db1.png)
