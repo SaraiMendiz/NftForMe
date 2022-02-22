@@ -8,8 +8,6 @@ En caso de que el usuario quiera comprar o vender un producto y contactar con el
 ## 📑Entidades 
 - #### Producto (NFT)
   Es el elemento en venta. El producto tendrá autor, precio, nombre e identificador.
-- #### Categoría
-  Será la clasificación de los productos que estará agrupados en grupos dependiendo de sus características.
 - #### Carrito
   Conjunto de uno o varios productos que serán comprados por el usuario que lo haya formado. Contendrá el importe total de los productos.
 - #### Pedido
