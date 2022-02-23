@@ -26,6 +26,7 @@ En caso de que el usuario quiera comprar o vender un producto y contactar con el
 ![SesiónIniciada](https://user-images.githubusercontent.com/73581636/154928850-ecfe911e-1837-4918-b931-3a622eee4894.png)
 ## 🔷Diagrama Entidad/Relación
 ![diagrama HTA - Página 1 (2)](https://user-images.githubusercontent.com/73581636/155111702-db859408-7c69-420f-8e9e-207fe61bd908.jpeg)
+
 ## 📜Diagramas UML
 #### 📁Objetos
 ![DUMLObjetos](https://user-images.githubusercontent.com/73581636/154920519-15fc8a11-94c9-459f-b385-93224b497df2.png)
