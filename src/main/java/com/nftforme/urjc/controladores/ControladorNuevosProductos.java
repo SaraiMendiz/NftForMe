@@ -1,6 +1,9 @@
 package com.nftforme.urjc.controladores;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,12 +22,13 @@ public class ControladorNuevosProductos {
 	private ControladorSesion infoControl;
 	
 	@GetMapping("/nuevoproducto")
-	public String nuevoproducto(Model model) {
+	public String nuevoproducto(Model model, HttpServletRequest request) {
 		if(infoControl.getLogin()) {
 			model.addAttribute("login",true);
 		}else {
 			model.addAttribute("login",false);
 		}
+		
 		return "nuevoproducto";
 	}
 	
