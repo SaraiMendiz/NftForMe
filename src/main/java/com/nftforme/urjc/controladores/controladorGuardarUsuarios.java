@@ -14,11 +14,11 @@ public class controladorGuardarUsuarios {
 	  @Autowired
 	 private UserRepository userRepository; 
 	  
-	  @PostConstruct
-	 private void initDatabase() { 
+	  //@PostConstruct
+/*	 private void initDatabase() { 
 		  userRepository.save(new User("user","pass","ROLE_USER"));
 		  userRepository.save(new User("admin","adminpass","ROLE_USER","ROLE_ADMIN"));
-	 } 
+	 } */
 	  
 }
 
