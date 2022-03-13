@@ -1,7 +1,11 @@
 package com.nftforme.urjc.controladores;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
@@ -21,12 +25,12 @@ public class ControladorSesion {
 		login=false;
 	}
 	
-	@GetMapping("/login/{user}")
+	/*@GetMapping("/login/{user}")
 	public String login(@PathVariable String user) {
 		this.clienteActual=clienteRepo.findByUser(user);
 		this.login=true;
 		return "redirect:/";
-	}
+	}*/
 	
 	@GetMapping("/logout")
 	public String logout() {
@@ -41,6 +45,21 @@ public class ControladorSesion {
 	public Cliente getClienteActual() {
 		return(this.clienteActual);
 	}
+	
+	@GetMapping("/login")
+	public String login(Model model, HttpServletRequest request) {
+
+	 CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
+	 model.addAttribute("token", token.getToken());
+	 return "login";
+	}
+	@GetMapping("/register")
+	public String register(Model model, HttpServletRequest request) {
+		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
+		 model.addAttribute("token", token.getToken());
+		 return "register";
+	} //esta puesta como que tienes que iniciar iniciar
+	
 	//ControladorProductosCliente
 	
 	/*@GetMapping("/cliente/{idCliente}/productos")

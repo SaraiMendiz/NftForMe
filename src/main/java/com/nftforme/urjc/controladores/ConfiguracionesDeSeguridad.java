@@ -1,6 +1,7 @@
 package com.nftforme.urjc.controladores;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
@@ -18,6 +19,16 @@ public class ConfiguracionesDeSeguridad  extends WebSecurityConfigurerAdapter{
 		http.authorizeRequests().antMatchers("/productos").permitAll();
 		http.authorizeRequests().antMatchers("/productos/{categoria}").permitAll();
 		http.authorizeRequests().antMatchers("/productos/ver/{nombre}").permitAll();
+		http.authorizeRequests().antMatchers("/login").permitAll();
+		
+		//Solo Usuario
+		http.authorizeRequests().antMatchers("/mispedidos").hasAnyRole("USER");
+		http.authorizeRequests().antMatchers("/carrito").hasAnyRole("USER");
+		http.authorizeRequests().antMatchers("/micuenta").hasAnyRole("USER");
+		//Solo Admin
+		http.authorizeRequests().antMatchers("/nuevoproducto").hasAnyRole("ADMIN");
+		http.authorizeRequests().antMatchers("/resultadonuevo").hasAnyRole("ADMIN");
+
 		
 		http.authorizeRequests().anyRequest().authenticated();
 		
@@ -30,10 +41,20 @@ public class ConfiguracionesDeSeguridad  extends WebSecurityConfigurerAdapter{
 		 http.logout().logoutUrl("/logout");
 		 http.logout().logoutSuccessUrl("/");
 		 
+		 //http.csrf().disable();
 
-		//usuario
-		//usuario.inMemoryAuthentication().withUser("user").password("pass").roles("USER");
 	}
+	
+	@Override
+	 protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+
+	 // User
+	 auth.inMemoryAuthentication().withUser("user").password("pass").roles("USER");
+	 //admin
+	 auth.inMemoryAuthentication().withUser("admin").password("adminpass").roles("USER", "ADMIN");
+
+	 }
+
 	
 }
 
