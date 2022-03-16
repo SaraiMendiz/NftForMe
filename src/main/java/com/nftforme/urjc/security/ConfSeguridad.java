@@ -1,14 +1,16 @@
-package com.nftforme.urjc.controladores;
+package com.nftforme.urjc.security;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
-
-
 @Configuration
-public class ConfiguracionesDeSeguridad  extends WebSecurityConfigurerAdapter{
+public class ConfSeguridad  extends WebSecurityConfigurerAdapter{
+	
+	@Autowired
+	public RepositorioWebUserAuthProvider authenticationProvider;
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception{
@@ -49,9 +51,9 @@ public class ConfiguracionesDeSeguridad  extends WebSecurityConfigurerAdapter{
 	 protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 
 	 // User
-	 auth.inMemoryAuthentication().withUser("user").password("pass").roles("USER");
+	 auth.inMemoryAuthentication().withUser("user@gmail.com").password("pass").roles("USER");
 	 //admin
-	 auth.inMemoryAuthentication().withUser("admin").password("adminpass").roles("USER", "ADMIN");
+	 auth.inMemoryAuthentication().withUser("admin@gmail.co").password("adminpass").roles("USER", "ADMIN");
 
 	 }
 

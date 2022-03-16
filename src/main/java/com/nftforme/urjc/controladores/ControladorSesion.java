@@ -8,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.nftforme.urjc.objetos.Cliente;
 import com.nftforme.urjc.repositorios.RepositorioCliente;
@@ -60,6 +62,15 @@ public class ControladorSesion {
 		 model.addAttribute("token", token.getToken());
 		 return "register";
 	} //esta puesta como que tienes que iniciar iniciar
+	
+	@PostMapping("/loginresult")
+	public String loginresult(Model model,@RequestParam String user,@RequestParam String pass) {
+		if(user.equals("user@gmail.com") && pass.equals("pass")) {
+			return "/";
+		}else {
+			return "/login";
+		}		
+	}
 	
 	//ControladorProductosCliente
 	

@@ -5,14 +5,14 @@ import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.nftforme.urjc.objetos.User;
-import com.nftforme.urjc.repositorios.UserRepository;
+import com.nftforme.urjc.objetos.WebUser;
+import com.nftforme.urjc.repositorios.RepositorioWebUser;
 
 @Component
 public class controladorGuardarUsuarios {
 	 
 	  @Autowired
-	 private UserRepository userRepository; 
+	 private RepositorioWebUser userRepository; 
 	  
 	  //@PostConstruct
 /*	 private void initDatabase() { 
