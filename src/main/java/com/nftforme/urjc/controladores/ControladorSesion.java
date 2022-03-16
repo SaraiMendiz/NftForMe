@@ -53,6 +53,7 @@ public class ControladorSesion {
 	 model.addAttribute("token", token.getToken());
 	 return "login";
 	}
+	
 	@GetMapping("/register")
 	public String register(Model model, HttpServletRequest request) {
 		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
