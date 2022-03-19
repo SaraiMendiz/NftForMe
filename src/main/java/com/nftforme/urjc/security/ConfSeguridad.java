@@ -37,8 +37,8 @@ public class ConfSeguridad  extends WebSecurityConfigurerAdapter{
 		http.formLogin().loginPage("/login");
 		http.formLogin().usernameParameter("username");
 		 http.formLogin().passwordParameter("password");
-		 http.formLogin().defaultSuccessUrl("/home");
-		 http.formLogin().failureUrl("/loginerror");
+		 http.formLogin().defaultSuccessUrl("/");
+		 http.formLogin().failureUrl("/login");
 
 		 http.logout().logoutUrl("/logout");
 		 http.logout().logoutSuccessUrl("/");

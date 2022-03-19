@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.nftforme.urjc.objetos.Cliente;
@@ -16,6 +17,8 @@ import com.nftforme.urjc.repositorios.RepositorioCliente;
 
 @Controller
 public class ControladorSesion {
+	
+	private SampleLogController log;
 	
 	private boolean login;
 	private Cliente clienteActual;
@@ -63,74 +66,20 @@ public class ControladorSesion {
 		 return "register";
 	} //esta puesta como que tienes que iniciar iniciar
 	
-	@PostMapping("/loginresult")
-	public String loginresult(Model model,@RequestParam String user,@RequestParam String pass) {
-		if(user.equals("user@gmail.com") && pass.equals("pass")) {
-			return "/";
+	@RequestMapping("/loginresult")
+	public String loginresult(Model model,HttpServletRequest request) {
+		System.out.println(log.page(model));
+		if(request.getParameter("username").equals("user@gmail.com") && request.getParameter("password").equals("pass")) {
+			return "redirect:/";
 		}else {
-			return "/login";
-		}		
-	}
-	
-	//ControladorProductosCliente
-	
-	/*@GetMapping("/cliente/{idCliente}/productos")
-	public String main(Model model) {
-		List <Producto> todos = repoProd.findAll();
-		model.addAttribute("producto", todos);
-		model.addAttribute("filtro", listaCli);
-		if(login) {
-			model.addAttribute("login",true);
-		}else {
-			model.addAttribute("login",false);
+			return "redirect:/ayuda";
 		}
-		return "productos";
-	}
-	
-	@GetMapping("/cliente/{idCliente}/productos/{categoria}")
-	public String categoria(Model model,@PathVariable int id,@PathVariable String categoria) {
 		
-		List <Producto> Productos = repoProd.findByCategoria(categoria);
-		model.addAttribute("categoriaP", Productos);
-		model.addAttribute("filtro", listaCli);
-		if(login) {
-			model.addAttribute("login",true);
+		/*if(user.equals("user@gmail.com") && pass.equals("pass")) {
+			return "redirect:/";
 		}else {
-			model.addAttribute("login",false);
-		}
-		return "ProductosCategoria";
-	}
-	
-	@GetMapping("/cliente/{idCliente}/productos/ver/{nombre}")
-	public String productoVer(Model model,@PathVariable int id,@PathVariable String nombre) {
+			return "redirect:/login";
+		}	*/
 		
-		List <Producto> nombreAnimals = repoProd.findByNombre(nombre);
-		model.addAttribute("nombreP", nombreAnimals);
-		if(login) {
-			model.addAttribute("login",true);
-		}else {
-			model.addAttribute("login",false);
-		}
-		return "VerProducto";
 	}
-	
-	@GetMapping("/cliente/{idCliente}/productos/comprar/{nombre}")
-	public String comprarProducto(Model model,@PathVariable int id,@PathVariable String nombre) {
-		
-		List <Producto> nombreAnimals = repoProd.findByNombre(nombre);
-		List<Cliente> clienteanonimo = clienteRepo.findById(id);
-		String nomString = "";
-		for(Cliente a : clienteanonimo) {
-			//carrito.save(new carritoClientes(a.getnombre(), a.getnombre(),a.getPrecio()));
-		}
-	
-		//List<CarritoCompra> todoCarrito = carrito.findByNombre(nomString);
-		model.addAttribute("listaCarrito",todoCarrito);
-		if(login) {
-			model.addAttribute("login",true);
-		}else {
-			model.addAttribute("login",false);
-		}
-		return "comprar";
-	}*/
 }
