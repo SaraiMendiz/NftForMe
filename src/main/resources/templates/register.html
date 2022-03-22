@@ -13,32 +13,18 @@
           <div class="card-body p-4 p-sm-5">
           <h5 class ="card-title text-center mb-5 fs-5"> NftForMe </h5>
             <h5 class="card-title text-center mb-7 fs-5">Registrarse</h5>
-            <form>
+            <form action="nuevouser" method="get">
               <div class="form-floating mb-3">
-                <input type="email" class="form-control" id="floatingInput" placeholder="nombre@ejemplo.com">
-                <label for="floatingInput">Correo Electrónico</label>
-              </div>
-              <div class="form-floating mb-3">
-                <input type="usuario" class="form-control" id="floatingInput" placeholder="usuario">
+                <input name="user" type="user" class="form-control" id="floatingInput" placeholder="usuario" required>
                 <label for="floatingInput">Nombre de Usuario</label>
               </div>
               <div class="form-floating mb-3">
-                <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                <input name="pass" type="password" class="form-control" id="floatingPassword" placeholder="Password" required>
                 <label for="floatingPassword">Contraseña</label>
               </div>
-              <div class="form-floating mb-3">
-                <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-                <label for="floatingPassword">Repita Contaseña</label>
-              </div>
-
-              <div class="form-check mb-3">
-                <input class="form-check-input" type="checkbox" value="" id="rememberPasswordCheck">
-                <label class="form-check-label" for="rememberPasswordCheck">
-                  Recordar Contraseña
-                </label>
-              </div>
+              <input type="hidden" name="_csrf" value="{{token}}"/>
               <div class="d-grid">
-                <button class="btn btn-primary btn-login text-uppercase fw-bold" type="submit">Register</button>
+                <button class="btn btn-primary btn-login text-uppercase fw-bold" type="submit">Registrar</button>
               </div>
               <hr class="my-4">
               

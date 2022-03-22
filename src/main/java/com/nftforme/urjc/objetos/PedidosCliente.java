@@ -18,12 +18,12 @@ public class PedidosCliente {
 	private Long id;
 	
 	@ManyToOne
-	private Cliente cliente;
+	private WebUser cliente;
 	
 	@OneToOne
 	private Producto producto;
 	
-	public PedidosCliente(Cliente cliente, Producto producto) {
+	public PedidosCliente(WebUser cliente, Producto producto) {
 		this.cliente=cliente;
 		this.producto=producto;
 	}
@@ -36,7 +36,7 @@ public class PedidosCliente {
 		return id;
 	}
 
-	public Cliente getCliente() {
+	public WebUser getCliente() {
 		return cliente;
 	}
 

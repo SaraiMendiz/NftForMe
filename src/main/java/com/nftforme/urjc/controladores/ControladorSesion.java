@@ -10,10 +10,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.nftforme.urjc.objetos.Cliente;
-import com.nftforme.urjc.repositorios.RepositorioCliente;
+import com.nftforme.urjc.objetos.WebUser;
+import com.nftforme.urjc.repositorios.RepositorioWebUser;
 
 @Controller
 public class ControladorSesion {
@@ -21,21 +22,14 @@ public class ControladorSesion {
 	private SampleLogController log;
 	
 	private boolean login;
-	private Cliente clienteActual;
+	private WebUser clienteActual;
 	
 	@Autowired
-	private RepositorioCliente clienteRepo;
+	private RepositorioWebUser clienteRepo;
 	
 	public ControladorSesion() {
 		login=false;
 	}
-	
-	/*@GetMapping("/login/{user}")
-	public String login(@PathVariable String user) {
-		this.clienteActual=clienteRepo.findByUser(user);
-		this.login=true;
-		return "redirect:/";
-	}*/
 	
 	@GetMapping("/logout")
 	public String logout() {
@@ -47,7 +41,7 @@ public class ControladorSesion {
 		return(this.login);
 	}
 	
-	public Cliente getClienteActual() {
+	public WebUser getClienteActual() {
 		return(this.clienteActual);
 	}
 	
@@ -64,22 +58,11 @@ public class ControladorSesion {
 		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
 		 model.addAttribute("token", token.getToken());
 		 return "register";
-	} //esta puesta como que tienes que iniciar iniciar
+	}
 	
-	@RequestMapping("/loginresult")
-	public String loginresult(Model model,HttpServletRequest request) {
-		System.out.println(log.page(model));
-		if(request.getParameter("username").equals("user@gmail.com") && request.getParameter("password").equals("pass")) {
-			return "redirect:/";
-		}else {
-			return "redirect:/ayuda";
-		}
-		
-		/*if(user.equals("user@gmail.com") && pass.equals("pass")) {
-			return "redirect:/";
-		}else {
-			return "redirect:/login";
-		}	*/
-		
+	@RequestMapping(value = "/nuevouser", method = RequestMethod.GET)
+	public String nuevouser(Model model,@RequestParam String user,@RequestParam String pass) {
+		clienteRepo.save(new WebUser(user,pass,"USER"));
+		return "redirect:/";
 	}
 }

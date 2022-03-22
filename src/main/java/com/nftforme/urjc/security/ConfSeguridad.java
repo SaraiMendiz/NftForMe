@@ -22,6 +22,8 @@ public class ConfSeguridad  extends WebSecurityConfigurerAdapter{
 		http.authorizeRequests().antMatchers("/productos/{categoria}").permitAll();
 		http.authorizeRequests().antMatchers("/productos/ver/{nombre}").permitAll();
 		http.authorizeRequests().antMatchers("/login").permitAll();
+		http.authorizeRequests().antMatchers("/register").permitAll();
+		http.authorizeRequests().antMatchers("/nuevouser").permitAll();
 		
 		//Solo Usuario
 		http.authorizeRequests().antMatchers("/mispedidos").hasAnyRole("USER");
@@ -34,7 +36,7 @@ public class ConfSeguridad  extends WebSecurityConfigurerAdapter{
 		
 		http.authorizeRequests().anyRequest().authenticated();
 		
-		http.formLogin().loginPage("/login");
+		//http.formLogin().loginPage("/login");
 		http.formLogin().usernameParameter("username");
 		 http.formLogin().passwordParameter("password");
 		 http.formLogin().defaultSuccessUrl("/");
@@ -49,15 +51,6 @@ public class ConfSeguridad  extends WebSecurityConfigurerAdapter{
 	
 	@Override
 	 protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-
-	 // User
-	 auth.inMemoryAuthentication().withUser("user@gmail.com").password("pass").roles("USER");
-	 //admin
-	 auth.inMemoryAuthentication().withUser("admin@gmail.co").password("adminpass").roles("USER", "ADMIN");
-
+			auth.authenticationProvider(authenticationProvider);
 	 }
-
-	
 }
-
-

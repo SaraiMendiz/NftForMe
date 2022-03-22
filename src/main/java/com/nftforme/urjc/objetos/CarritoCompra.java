@@ -17,12 +17,12 @@ public class CarritoCompra {
 	private Long id;
 	
 	@OneToOne
-	private Cliente cliente;
+	private WebUser cliente;
 	
 	@ManyToOne
 	private Producto producto;
 		
-	public CarritoCompra(Cliente cliente, Producto producto) {
+	public CarritoCompra(WebUser cliente, Producto producto) {
 		this.cliente=cliente;
 		this.producto=producto;
 	}
@@ -31,7 +31,7 @@ public class CarritoCompra {
 		
 	}
 
-	public Cliente getCliente() {
+	public WebUser getCliente() {
 		return cliente;
 	}
 
