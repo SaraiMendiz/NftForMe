@@ -37,6 +37,10 @@ public class WebUser {
 		this.roles.add(rol1);
 	}
 	
+	public WebUser() {
+		
+	}
+	
 	public Long getId() {
 		return id;
 	}

@@ -2,6 +2,7 @@ package com.nftforme.urjc.security;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -14,11 +15,15 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import com.nftforme.urjc.controladores.ControladorSesion;
 import com.nftforme.urjc.objetos.WebUser;
 import com.nftforme.urjc.repositorios.RepositorioWebUser;
 
 @Component
 public class RepositorioWebUserAuthProvider implements AuthenticationProvider {
+		
+	@Autowired
+	private ControladorSesion control;
 	
 	 @Autowired
 	 private RepositorioWebUser userRepository;
@@ -27,22 +32,28 @@ public class RepositorioWebUserAuthProvider implements AuthenticationProvider {
 	 public Authentication authenticate(Authentication auth) throws AuthenticationException {
 		 WebUser user = userRepository.findByName(auth.getName());
 		 if (user == null) {
-			 throw new BadCredentialsException("User not found");
+			 throw new BadCredentialsException("Usuario no encontrado");
 		 }
 		 String password = (String) auth.getCredentials();
 		 if (!new BCryptPasswordEncoder().matches(password, user.getPasswordHash())) {
-			 throw new BadCredentialsException("Wrong password");
+			 throw new BadCredentialsException("Contraseña incorrecta");
 		 }
+		 
+		 /*if (!password.equals(user.getPasswordHash())) {
+			 throw new BadCredentialsException("Wrong password");
+		 }*/
 
 		 List<GrantedAuthority> roles = new ArrayList<>();
 		 for (String role : user.getRoles()) {
 			 roles.add(new SimpleGrantedAuthority(role));
 		 }
-		 return new UsernamePasswordAuthenticationToken(user.getName(), password, roles);
+		 UsernamePasswordAuthenticationToken temp = new UsernamePasswordAuthenticationToken(user.getName(), password, roles);
+		 control.setCurrentUser(temp);
+		 return(temp);
 	 }
 
 	@Override
 	public boolean supports(Class<?> authentication) {
-		return false;
+		return true;
 	}
 }

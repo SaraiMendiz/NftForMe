@@ -24,6 +24,7 @@ public class ConfSeguridad  extends WebSecurityConfigurerAdapter{
 		http.authorizeRequests().antMatchers("/login").permitAll();
 		http.authorizeRequests().antMatchers("/register").permitAll();
 		http.authorizeRequests().antMatchers("/nuevouser").permitAll();
+		http.authorizeRequests().antMatchers("/closelog").permitAll();
 		
 		//Solo Usuario
 		http.authorizeRequests().antMatchers("/mispedidos").hasAnyRole("USER");
@@ -37,20 +38,20 @@ public class ConfSeguridad  extends WebSecurityConfigurerAdapter{
 		http.authorizeRequests().anyRequest().authenticated();
 		
 		//http.formLogin().loginPage("/login");
-		http.formLogin().usernameParameter("username");
+		 http.formLogin().usernameParameter("username");
 		 http.formLogin().passwordParameter("password");
 		 http.formLogin().defaultSuccessUrl("/");
 		 http.formLogin().failureUrl("/login");
 
 		 http.logout().logoutUrl("/logout");
-		 http.logout().logoutSuccessUrl("/");
+		 http.logout().logoutSuccessUrl("/closelog");
 		 
 		 //http.csrf().disable();
 
 	}
 	
 	@Override
-	 protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-			auth.authenticationProvider(authenticationProvider);
-	 }
+	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+		auth.authenticationProvider(authenticationProvider);
+	}
 }
