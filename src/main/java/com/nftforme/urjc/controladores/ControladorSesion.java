@@ -5,16 +5,13 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.juli.logging.Log;
 import org.apache.juli.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-
 
 import com.nftforme.urjc.objetos.WebUser;
 import com.nftforme.urjc.repositorios.RepositorioWebUser;
@@ -63,17 +60,15 @@ public class ControladorSesion {
 		 return "register";
 	}
 	
-	@RequestMapping(value = "/nuevouser", method = RequestMethod.GET)
-	public String nuevouser(Model model,@RequestParam String user,@RequestParam String pass) {
-		clienteRepo.save(new WebUser(user,new BCryptPasswordEncoder().encode(pass),"USER"));
+	@PostMapping("/nuevouser")
+	public String nuevouser(Model model,WebUser temp) {
+		temp.setRolUser();
+		clienteRepo.save(temp);
 		return "redirect:/";
 	}
 	
-	public void setCurrentUser(UsernamePasswordAuthenticationToken user) {
-		/*log.info(user.getPrincipal());
-		//System.out.println();
-		this.clienteActual=clienteRepo.findByName((String)user.getPrincipal());
-		//this.clienteActual=(WebUser)user.getPrincipal();*/
+	public void setCurrentUser(WebUser user) {
+		this.clienteActual=user;
 		this.login=true;
 	}
 	

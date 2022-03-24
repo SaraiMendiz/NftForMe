@@ -23,7 +23,7 @@ import com.nftforme.urjc.repositorios.RepositorioWebUser;
 public class RepositorioWebUserAuthProvider implements AuthenticationProvider {
 		
 	@Autowired
-	private ControladorSesion control;
+	private UserComponent userLog;
 	
 	 @Autowired
 	 private RepositorioWebUser userRepository;
@@ -39,17 +39,13 @@ public class RepositorioWebUserAuthProvider implements AuthenticationProvider {
 			 throw new BadCredentialsException("Contraseña incorrecta");
 		 }
 		 
-		 /*if (!password.equals(user.getPasswordHash())) {
-			 throw new BadCredentialsException("Wrong password");
-		 }*/
-
 		 List<GrantedAuthority> roles = new ArrayList<>();
 		 for (String role : user.getRoles()) {
 			 roles.add(new SimpleGrantedAuthority(role));
 		 }
-		 UsernamePasswordAuthenticationToken temp = new UsernamePasswordAuthenticationToken(user.getName(), password, roles);
-		 control.setCurrentUser(temp);
-		 return(temp);
+		 
+		 userLog.setLoggedUser(user);
+		 return(new UsernamePasswordAuthenticationToken(user.getName(), password, roles));
 	 }
 
 	@Override

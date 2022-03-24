@@ -13,13 +13,13 @@
           <div class="card-body p-4 p-sm-5">
           <h5 class ="card-title text-center mb-5 fs-5"> NftForMe </h5>
             <h5 class="card-title text-center mb-7 fs-5">Registrarse</h5>
-            <form action="nuevouser" method="get">
+            <form action="nuevouser" method="post">
               <div class="form-floating mb-3">
-                <input name="user" type="user" class="form-control" id="floatingInput" placeholder="usuario" required>
+                <input name="name" type="text" class="form-control" id="floatingInput" placeholder="usuario" required>
                 <label for="floatingInput">Nombre de Usuario</label>
               </div>
               <div class="form-floating mb-3">
-                <input name="pass" type="password" class="form-control" id="floatingPassword" placeholder="Password" required>
+                <input name="passwordHash" type="password" class="form-control" id="floatingPassword" placeholder="Password" required>
                 <label for="floatingPassword">Contraseña</label>
               </div>
               <input type="hidden" name="_csrf" value="{{token}}"/>
