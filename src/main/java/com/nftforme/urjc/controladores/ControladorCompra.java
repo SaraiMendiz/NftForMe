@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,6 +32,9 @@ public class ControladorCompra {
 	
 	@Autowired
 	private ControladorSesion infoControl;
+	
+
+	
 
 	@GetMapping("/mispedidos")
 	public String mispedidos(Model model) {
@@ -81,6 +85,12 @@ public class ControladorCompra {
 			carrito.save(new CarritoCompra(infoControl.getClienteActual(),temp.get()));
 			temp.get().setComprado(true);
 			repoProd.save(temp.get());
+			////////////////////////////////////////////////////////////////////////////////////////////////////
+			
+			SenderInterno envio = new SenderInterno();
+			envio.senderToInterno(temp);
+			
+			////////////////////////////////////////////////////////////////////////////////////////////////////
 			model.addAttribute("resultado","Comprado correctamente");
 			model.addAttribute("comprobar",true);
 		}		
