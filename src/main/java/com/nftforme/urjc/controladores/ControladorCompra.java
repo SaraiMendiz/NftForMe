@@ -87,8 +87,8 @@ public class ControladorCompra {
 			repoProd.save(temp.get());
 			////////////////////////////////////////////////////////////////////////////////////////////////////
 			
-			SenderInterno envio = new SenderInterno();
-			envio.senderToInterno(temp);
+			//SenderInterno envio = new SenderInterno();
+			//envio.senderToInterno(temp);
 			
 			////////////////////////////////////////////////////////////////////////////////////////////////////
 			model.addAttribute("resultado","Comprado correctamente");

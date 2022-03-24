@@ -6,6 +6,8 @@ import java.util.Optional;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.GetMapping;
+
 import com.nftforme.urjc.objetos.Producto;
 
 
@@ -17,18 +19,17 @@ public class SenderInterno{
 	
 	
 	@Autowired
-    RabbitTemplate rabbitTemplate;
+    private RabbitTemplate rabbitTemplate;
 	
-   
-    
-	public void senderToInterno(Optional<Producto> temp) {
+ 
+	public void senderToInterno(Producto temp) {
 		
 		HashMap<String,String> MESSAGE = new HashMap<>();
-		MESSAGE.put("Usuario", temp.get().getNombre());
-		MESSAGE.put("Precio", Float.toString(temp.get().getPrecio()));
-		MESSAGE.put("Autor", temp.get().getAutor());
-		MESSAGE.put("Usuario", temp.get().getNombre());
-		MESSAGE.put("Hash", temp.get().getHash());
+		MESSAGE.put("Usuario", temp.getNombre());
+		MESSAGE.put("Precio", Float.toString(temp.getPrecio()));
+		MESSAGE.put("Autor", temp.getAutor());
+		MESSAGE.put("Usuario", temp.getNombre());
+		MESSAGE.put("Hash", temp.getHash());
 		
 		rabbitTemplate.convertAndSend("exchange_name", "routing_key", MESSAGE);
 		
