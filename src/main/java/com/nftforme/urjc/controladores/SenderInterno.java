@@ -5,22 +5,22 @@ import java.util.Optional;
 
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import com.nftforme.urjc.objetos.Producto;
-import com.nftforme.urjc.repositorios.RepositorioProducto;
 
 
 
 
+@Component
 public class SenderInterno{
 
 	
-	@Autowired
-	private RepositorioProducto repoProd;
 	
 	@Autowired
     RabbitTemplate rabbitTemplate;
 	
-	
+   
+    
 	public void senderToInterno(Optional<Producto> temp) {
 		
 		HashMap<String,String> MESSAGE = new HashMap<>();
