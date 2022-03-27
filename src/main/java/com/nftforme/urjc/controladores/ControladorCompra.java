@@ -38,7 +38,7 @@ public class ControladorCompra {
 
 	@GetMapping("/mispedidos")
 	public String mispedidos(Model model) {
-		List<PedidosCliente> todos = repoPedidos.findAll();
+		List<PedidosCliente> todos = repoPedidos.findAllByCliente(infoControl.getClienteActual());
 		ArrayList<Producto> productos = new ArrayList<Producto>();
 		for(PedidosCliente temp: todos) {
 			productos.add(temp.getProducto());
@@ -54,7 +54,7 @@ public class ControladorCompra {
 	
 	@GetMapping("/carrito")
 	public String carrito(Model model) {
-		List<CarritoCompra> todos = carrito.findAll();
+		List<CarritoCompra> todos = carrito.findAllByCliente(infoControl.getClienteActual());
 		ArrayList<Producto> productos = new ArrayList<Producto>();
 		for(CarritoCompra temp: todos) {
 			productos.add(temp.getProducto());

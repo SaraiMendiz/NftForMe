@@ -27,12 +27,12 @@ public class ConfSeguridad  extends WebSecurityConfigurerAdapter{
 		http.authorizeRequests().antMatchers("/closelog").permitAll();
 		
 		//Solo Usuario
-		http.authorizeRequests().antMatchers("/mispedidos").hasAnyRole("USER");
-		http.authorizeRequests().antMatchers("/carrito").hasAnyRole("USER");
-		http.authorizeRequests().antMatchers("/micuenta").hasAnyRole("USER");
+		http.authorizeRequests().antMatchers("/mispedidos").hasAuthority("USER");
+		http.authorizeRequests().antMatchers("/carrito").hasAuthority("USER");
+		http.authorizeRequests().antMatchers("/micuenta").hasAuthority("USER");
 		//Solo Admin
-		http.authorizeRequests().antMatchers("/nuevoproducto").hasAnyRole("ADMIN");
-		http.authorizeRequests().antMatchers("/resultadonuevo").hasAnyRole("ADMIN");
+		http.authorizeRequests().antMatchers("/nuevoproducto").hasAuthority("ADMIN");
+		http.authorizeRequests().antMatchers("/resultadonuevo").hasAuthority("ADMIN");
 
 		
 		http.authorizeRequests().anyRequest().authenticated();
