@@ -101,8 +101,14 @@ public class ControladorCompra {
 	@GetMapping("/moverapedido/{id}")
 	public String moverAPedido(Model model,@PathVariable Long id) {
 		repoPedidos.save(new PedidosCliente(infoControl.getClienteActual(),carrito.findByProducto(repoProd.findById(id)).get().getProducto()));
+		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		Optional<CarritoCompra> producto;
+		producto = carrito.findById(carrito.findByProducto(repoProd.findById(id)).get().getId());
+		Producto gProducto = producto.get().getProducto();
+		senderInterno.senderToInterno(gProducto);
+		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		carrito.deleteById(carrito.findByProducto(repoProd.findById(id)).get().getId());
-		return "redirect:/sender";
+		return "redirect:/mispedidos";
 	}
 	
 	@GetMapping("/deletebag/{id}")
@@ -112,14 +118,5 @@ public class ControladorCompra {
 		repoProd.save(repoProd.findById(id).get());
 		return "redirect:/carrito";
 	}
-	
-	@GetMapping("/sender")
-    public String send(){
-		List <Producto> todos = repoProd.findAll();
-		for(Producto temp : todos) {
-        senderInterno.senderToInterno(temp);
-		}
-        return "redirect:/mispedidos";
-        
-    }
+
 }
