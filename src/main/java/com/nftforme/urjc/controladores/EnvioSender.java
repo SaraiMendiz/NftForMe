@@ -17,7 +17,7 @@ import com.nftforme.urjc.objetos.Producto;
 import com.nftforme.urjc.repositorios.RepositorioProducto;
 
 @RestController
-@RequestMapping("/sender")
+//@RequestMapping("/sender")
 public class EnvioSender {
 
 	@Autowired
@@ -32,7 +32,7 @@ public class EnvioSender {
 		for(Producto temp : todos) {
         senderInterno.senderToInterno(temp);
 		}
-        return "ok. done";
+        return "mispedidos";
         
     }
 	    
