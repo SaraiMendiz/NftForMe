@@ -28,9 +28,9 @@ public class DatabaseLoader {
 		
 
 		clienteRepo.save(new WebUser("user","pass","USER"));
-		clienteRepo.save(new WebUser("admin","adminpass","USER","ADMIN"));*/
+		clienteRepo.save(new WebUser("admin","adminpass","USER","ADMIN"));
 		repoProd.save(new Producto("Renauld",900F,"Alvaro","Coches","https://img.remediosdigitales.com/81cf58/opel-astra-2021-03/840_560.jpeg"));
 		repoProd.save(new Producto("Toyota",900F,"Alvaro","Coches","https://img.remediosdigitales.com/81cf58/opel-astra-2021-03/840_560.jpeg"));
-		repoProd.save(new Producto("Ferrari",900F,"Alvaro","Coches","https://img.remediosdigitales.com/81cf58/opel-astra-2021-03/840_560.jpeg"));
+		repoProd.save(new Producto("Ferrari",900F,"Alvaro","Coches","https://img.remediosdigitales.com/81cf58/opel-astra-2021-03/840_560.jpeg"));*/
 	}
 }

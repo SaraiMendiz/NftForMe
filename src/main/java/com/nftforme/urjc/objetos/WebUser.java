@@ -23,6 +23,8 @@ public class WebUser {
 	private String name;
 	private String passwordHash;
 	
+	private boolean rolAdmin;
+	
 	@ElementCollection(fetch = FetchType.EAGER)
 	private List<String> roles = new ArrayList<>();
 	
@@ -31,6 +33,7 @@ public class WebUser {
 		this.passwordHash=new BCryptPasswordEncoder().encode(pass);
 		this.roles.add(rol1);
 		this.roles.add(rol2);
+		this.rolAdmin=true;
 	}
 	
 	public WebUser(String user, String pass, String rol1) {
@@ -69,5 +72,9 @@ public class WebUser {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public boolean getRolAdmin() {
+		return(this.rolAdmin);
 	}
 }

@@ -22,6 +22,7 @@ public class ControladorSesion {
 	private static final Log log = LogFactory.getLog(ControladorSesion.class);
 		
 	private boolean login;
+	private boolean loginAdmin;
 	private WebUser clienteActual;
 	
 	@Autowired
@@ -34,11 +35,16 @@ public class ControladorSesion {
 	@GetMapping("/logout")
 	public String logout() {
 		this.login=false;
+		this.loginAdmin=false;
 		return "redirect:/";
 	}
 	
 	public boolean getLogin() {
 		return(this.login);
+	}
+	
+	public boolean getLoginAdmin() {
+		return(this.loginAdmin);
 	}
 	
 	public WebUser getClienteActual() {
@@ -69,6 +75,9 @@ public class ControladorSesion {
 	
 	public void setCurrentUser(WebUser user) {
 		this.clienteActual=user;
+		if(user.getRolAdmin()) {
+			this.loginAdmin=true;
+		}
 		this.login=true;
 	}
 	

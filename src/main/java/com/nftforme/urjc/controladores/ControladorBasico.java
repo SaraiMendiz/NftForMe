@@ -1,5 +1,7 @@
 package com.nftforme.urjc.controladores;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,11 +36,13 @@ public class ControladorBasico {
 	}
 	
 	@GetMapping("/ayuda")
-	public String ayuda(Model model) {
-		if(infoControl.getLogin()) {
-			model.addAttribute("login",true);
+	public String ayuda(Model model,HttpServletRequest request) {
+		if(infoControl.getLoginAdmin()) {
+			model.addAttribute("admin",true);
+		}else if(infoControl.getLogin()) {
+			model.addAttribute("user",true);
 		}else {
-			model.addAttribute("login",false);
+			model.addAttribute("normal",true);
 		}
 		return "ayuda";
 	}
