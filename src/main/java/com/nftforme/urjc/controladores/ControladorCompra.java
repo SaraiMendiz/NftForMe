@@ -86,12 +86,6 @@ public class ControladorCompra {
 			carrito.save(new CarritoCompra(infoControl.getClienteActual(),temp.get()));
 			temp.get().setComprado(true);
 			repoProd.save(temp.get());
-			////////////////////////////////////////////////////////////////////////////////////////////////////
-			
-			//SenderInterno envio = new SenderInterno();
-			//envio.senderToInterno(temp);
-			
-			////////////////////////////////////////////////////////////////////////////////////////////////////
 			model.addAttribute("resultado","Comprado correctamente");
 			model.addAttribute("comprobar",true);
 		}		
