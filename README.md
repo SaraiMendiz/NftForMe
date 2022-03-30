@@ -17,8 +17,7 @@ En caso de que el usuario quiera comprar o vender un producto y contactar con el
 - #### Vendedor
   Será quien ponga en venta el producto en la página. El vendedor tendrá nombre (único), contraseña, galería y saldo.
 ## 🔧Funcionalidades del Servicio Interno
-- El cliente recibir correos electrónicos ya sean de carácter publicitario, informativo o por alguna actividad realizada con su cuenta. 
-- El vendedor podrá recibir correos eléctronicos de carácter publicitario, informativo o por alguna actividad realizada con su cuenta y mandar correos a clientes sobre los productos o pedidos.
+- El servidor se encargará de crear una factura con cada pedido que se haga.
 - GitHub Servicio Interno : https://github.com/sstsanta/ServicioInterno
 ## 🌐Diagrama de Navegación
 #### 🔓Sin Iniciar Sesión
