@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -45,10 +44,12 @@ public class ControladorCompra {
 			productos.add(temp.getProducto());
 		}
 		model.addAttribute("producto", productos);
-		if(infoControl.getLogin()) {
-			model.addAttribute("login",true);
+		if(infoControl.getLoginAdmin()) {
+			model.addAttribute("admin",true);
+		}else if(infoControl.getLogin()) {
+			model.addAttribute("user",true);
 		}else {
-			model.addAttribute("login",false);
+			model.addAttribute("normal",true);
 		}
 		return "mispedidos";
 	}
@@ -62,10 +63,12 @@ public class ControladorCompra {
 		}
 		model.addAttribute("producto", productos);
 		
-		if(infoControl.getLogin()) {
-			model.addAttribute("login",true);
+		if(infoControl.getLoginAdmin()) {
+			model.addAttribute("admin",true);
+		}else if(infoControl.getLogin()) {
+			model.addAttribute("user",true);
 		}else {
-			model.addAttribute("login",false);
+			model.addAttribute("normal",true);
 		}
 		return "carrito";
 	}
@@ -89,6 +92,14 @@ public class ControladorCompra {
 			model.addAttribute("resultado","Comprado correctamente");
 			model.addAttribute("comprobar",true);
 		}		
+		
+		if(infoControl.getLoginAdmin()) {
+			model.addAttribute("admin",true);
+		}else if(infoControl.getLogin()) {
+			model.addAttribute("user",true);
+		}else {
+			model.addAttribute("normal",true);
+		}
 		return "resultadoCarrito";
 	}
 	

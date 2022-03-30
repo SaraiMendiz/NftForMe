@@ -3,7 +3,6 @@ package com.nftforme.urjc.controladores;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,7 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import com.fasterxml.jackson.datatype.jdk8.OptionalIntDeserializer;
 import com.nftforme.urjc.objetos.Producto;
 import com.nftforme.urjc.repositorios.RepositorioProducto;
 
@@ -49,10 +47,12 @@ public class ControladorProductos {
 		}
 		model.addAttribute("producto", prodNoComprados);
 		model.addAttribute("filtro", listaProd);
-		if(infoControl.getLogin()) {
-			model.addAttribute("login",true);
+		if(infoControl.getLoginAdmin()) {
+			model.addAttribute("admin",true);
+		}else if(infoControl.getLogin()) {
+			model.addAttribute("user",true);
 		}else {
-			model.addAttribute("login",false);
+			model.addAttribute("normal",true);
 		}
 		return "productos";
 	}
@@ -68,10 +68,12 @@ public class ControladorProductos {
 		}
 		model.addAttribute("categoriaP", prodNoComprados);
 		model.addAttribute("filtro", listaProd);
-		if(infoControl.getLogin()) {
-			model.addAttribute("login",true);
+		if(infoControl.getLoginAdmin()) {
+			model.addAttribute("admin",true);
+		}else if(infoControl.getLogin()) {
+			model.addAttribute("user",true);
 		}else {
-			model.addAttribute("login",false);
+			model.addAttribute("normal",true);
 		}
 		return "ProductosCategoria";
 	}
@@ -80,10 +82,14 @@ public class ControladorProductos {
 	public String verProducto(Model model,@PathVariable String nombre) {
 		List <Producto> nombreAnimals = repoProd.findByNombre(nombre);
 		model.addAttribute("nombreP", nombreAnimals);
-		if(infoControl.getLogin()) {
-			model.addAttribute("login",true);
+		if(infoControl.getLoginAdmin()) {
+			model.addAttribute("admin",true);
+			model.addAttribute("adminP",true);
+		}else if(infoControl.getLogin()) {
+			model.addAttribute("user",true);
+			model.addAttribute("userP",true);
 		}else {
-			model.addAttribute("login",false);
+			model.addAttribute("normal",true);
 		}
 		return "VerProducto";
 	}
@@ -91,10 +97,12 @@ public class ControladorProductos {
 	@GetMapping("/hash/{id}")
 	public String hash(Model model,@PathVariable Long id) {
 		model.addAttribute("hash", repoProd.findById(id).get().getHash());
-		if(infoControl.getLogin()) {
-			model.addAttribute("login",true);
+		if(infoControl.getLoginAdmin()) {
+			model.addAttribute("admin",true);
+		}else if(infoControl.getLogin()) {
+			model.addAttribute("user",true);
 		}else {
-			model.addAttribute("login",false);
+			model.addAttribute("normal",true);
 		}
 		return "verhash";
 	}

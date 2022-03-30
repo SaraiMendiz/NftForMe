@@ -19,7 +19,7 @@ import com.nftforme.urjc.repositorios.RepositorioWebUser;
 @Controller
 public class ControladorSesion {
 	
-	private static final Log log = LogFactory.getLog(ControladorSesion.class);
+	//private static final Log log = LogFactory.getLog(ControladorSesion.class);
 		
 	private boolean login;
 	private boolean loginAdmin;
@@ -29,14 +29,8 @@ public class ControladorSesion {
 	private RepositorioWebUser clienteRepo;
 	
 	public ControladorSesion() {
-		login=false;
-	}
-	
-	@GetMapping("/logout")
-	public String logout() {
 		this.login=false;
 		this.loginAdmin=false;
-		return "redirect:/";
 	}
 	
 	public boolean getLogin() {
@@ -85,6 +79,7 @@ public class ControladorSesion {
 	public String closelog(Model model) {
 		this.login=false;
 		this.clienteActual=null;
+		this.loginAdmin=false;
 		return("redirect:/");
 	}
 }
