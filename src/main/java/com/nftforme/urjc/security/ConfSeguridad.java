@@ -25,6 +25,7 @@ public class ConfSeguridad  extends WebSecurityConfigurerAdapter{
 		http.authorizeRequests().antMatchers("/register").permitAll();
 		http.authorizeRequests().antMatchers("/nuevouser").permitAll();
 		http.authorizeRequests().antMatchers("/closelog").permitAll();
+		http.authorizeRequests().antMatchers("/error").permitAll();
 		
 		//Solo Usuario
 		http.authorizeRequests().antMatchers("/mispedidos").hasAuthority("USER");

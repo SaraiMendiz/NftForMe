@@ -10,6 +10,11 @@ public class ControladorBasico {
 	
 	@Autowired
 	private ControladorSesion infoControl;
+	
+	@GetMapping("/error")
+	public String error(Model model) {
+		return "error";
+	}
 
 	@GetMapping("/")
 	public String mainPage(Model model) {
