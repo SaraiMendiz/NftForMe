@@ -29,7 +29,10 @@ public class ControladorSesion {
 	private RepositorioWebUser clienteRepo;
 	
 	public ControladorSesion() {
-		this.login=false;
+		if(clienteActual==null)
+			this.login=false;
+		else
+			this.login = clienteActual.isLoginIn();
 		this.loginAdmin=false;
 	}
 	
@@ -72,12 +75,14 @@ public class ControladorSesion {
 		if(user.getRolAdmin()) {
 			this.loginAdmin=true;
 		}
+		clienteActual.setLoginIn(true);
 		this.login=true;
 	}
 	
 	@RequestMapping(value = "/closelog", method = RequestMethod.GET)
 	public String closelog(Model model) {
 		this.login=false;
+		clienteActual.setLoginIn(false);
 		this.clienteActual=null;
 		this.loginAdmin=false;
 		return("redirect:/");
