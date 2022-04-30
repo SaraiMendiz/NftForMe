@@ -38,6 +38,7 @@ public class ControladorSesion {
 	
 	public boolean getLogin() {
 		return(this.login);
+		
 	}
 	
 	public boolean getLoginAdmin() {
@@ -75,14 +76,16 @@ public class ControladorSesion {
 		if(user.getRolAdmin()) {
 			this.loginAdmin=true;
 		}
-		clienteActual.setLoginIn(true);
+		this.clienteActual.setLoginIn(true);
+		clienteRepo.save(clienteActual);
 		this.login=true;
 	}
 	
 	@RequestMapping(value = "/closelog", method = RequestMethod.GET)
 	public String closelog(Model model) {
 		this.login=false;
-		clienteActual.setLoginIn(false);
+		this.clienteActual.setLoginIn(false);
+		clienteRepo.save(clienteActual);
 		this.clienteActual=null;
 		this.loginAdmin=false;
 		return("redirect:/");

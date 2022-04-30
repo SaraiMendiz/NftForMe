@@ -41,7 +41,7 @@ public class WebUser {
 		this.name=user;
 		this.passwordHash=new BCryptPasswordEncoder().encode(pass);
 		this.roles.add(rol1);
-		this.loginIn=false;
+		this.loginIn=true;
 	}
 	
 	public boolean isLoginIn() {
