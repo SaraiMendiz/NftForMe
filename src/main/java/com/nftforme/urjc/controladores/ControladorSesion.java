@@ -29,11 +29,11 @@ public class ControladorSesion {
 	private RepositorioWebUser clienteRepo;
 	
 	public ControladorSesion() {
-		if(clienteActual==null)
+		/*if(clienteActual==null)
 			this.login=false;
 		else
 			this.login = clienteActual.isLoginIn();
-		this.loginAdmin=false;
+		this.loginAdmin=false;*/
 	}
 	
 	public boolean getLogin() {
@@ -49,13 +49,13 @@ public class ControladorSesion {
 		return(this.clienteActual);
 	}
 	
-	@GetMapping("/login")
+	/*@GetMapping("/login")
 	public String login(Model model, HttpServletRequest request) {
 
 	 CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
 	 model.addAttribute("token", token.getToken());
 	 return "login";
-	}
+	}*/
 	
 	@GetMapping("/register")
 	public String register(Model model, HttpServletRequest request) {

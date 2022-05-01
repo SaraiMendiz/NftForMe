@@ -2,16 +2,13 @@ package com.nftforme.urjc.objetos;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
 
 @Entity
 public class WebUser {
