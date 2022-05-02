@@ -37,7 +37,11 @@ public class ControladorSesion {
 	}
 	
 	public boolean getLogin() {
+		if(clienteActual==null) {
 		return(this.login);
+		}else {
+			return this.login = clienteActual.isLoginIn();
+		}
 		
 	}
 	
