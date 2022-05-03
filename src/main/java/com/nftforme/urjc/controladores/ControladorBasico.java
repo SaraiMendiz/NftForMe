@@ -4,12 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import com.nftforme.urjc.security.UserComponent;
 
 @Controller
 public class ControladorBasico {
 	
 	@Autowired
-	private ControladorSesion infoControl;
+	private UserComponent infoControl;
 	
 	@GetMapping("/error")
 	public String error(Model model) {
@@ -18,9 +19,9 @@ public class ControladorBasico {
 
 	@GetMapping("/")
 	public String mainPage(Model model) {
-		if(infoControl.getLoginAdmin()) {
+		if(infoControl.isAdmin()) {
 			model.addAttribute("admin",true);
-		}else if(infoControl.getLogin()) {
+		}else if(infoControl.getLoggedUser()!=null) {
 			model.addAttribute("user",true);
 		}else {
 			model.addAttribute("normal",true);
@@ -31,9 +32,9 @@ public class ControladorBasico {
 	
 	@GetMapping("/micuenta")
 	public String micuenta(Model model) {
-		if(infoControl.getLoginAdmin()) {
+		if(infoControl.isAdmin()) {
 			model.addAttribute("admin",true);
-		}else if(infoControl.getLogin()) {
+		}else if(infoControl.getLoggedUser()!=null) {
 			model.addAttribute("user",true);
 		}else {
 			model.addAttribute("normal",true);
@@ -43,9 +44,9 @@ public class ControladorBasico {
 	
 	@GetMapping("/ayuda")
 	public String ayuda(Model model) {
-		if(infoControl.getLoginAdmin()) {
+		if(infoControl.isAdmin()) {
 			model.addAttribute("admin",true);
-		}else if(infoControl.getLogin()) {
+		}else if(infoControl.getLoggedUser()!=null) {
 			model.addAttribute("user",true);
 		}else {
 			model.addAttribute("normal",true);
@@ -55,9 +56,9 @@ public class ControladorBasico {
 	
 	@GetMapping("/quienessomos")
 	public String quienessomos(Model model) {
-		if(infoControl.getLoginAdmin()) {
+		if(infoControl.isAdmin()) {
 			model.addAttribute("admin",true);
-		}else if(infoControl.getLogin()) {
+		}else if(infoControl.getLoggedUser()!=null) {
 			model.addAttribute("user",true);
 		}else {
 			model.addAttribute("normal",true);

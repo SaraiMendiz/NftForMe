@@ -19,7 +19,6 @@ public class WebUser {
 	
 	private String name;
 	private String passwordHash;
-	private boolean loginIn;
 	private boolean rolAdmin;
 	
 	@ElementCollection(fetch = FetchType.EAGER)
@@ -31,22 +30,12 @@ public class WebUser {
 		this.roles.add(rol1);
 		this.roles.add(rol2);
 		this.rolAdmin=true;
-		this.loginIn=false;
 	}
 	
 	public WebUser(String user, String pass, String rol1) {
 		this.name=user;
 		this.passwordHash=new BCryptPasswordEncoder().encode(pass);
 		this.roles.add(rol1);
-		this.loginIn=true;
-	}
-	
-	public boolean isLoginIn() {
-		return loginIn;
-	}
-
-	public void setLoginIn(boolean loginIn) {
-		this.loginIn = loginIn;
 	}
 
 	public WebUser() {

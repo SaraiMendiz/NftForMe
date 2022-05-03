@@ -1,16 +1,13 @@
 package com.nftforme.urjc.controladores;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.nftforme.urjc.objetos.Producto;
 import com.nftforme.urjc.repositorios.RepositorioProducto;
 
 @RestController
-//@RequestMapping("/sender")
 public class EnvioSender {
 
 	@Autowired
@@ -26,7 +23,5 @@ public class EnvioSender {
 			senderInterno.senderToInterno(temp);
 		}
         return "mispedidos";
-        
-    }
-	    
+    }    
 }

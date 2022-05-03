@@ -1,15 +1,14 @@
 package com.nftforme.urjc.controladores;
 
 import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import com.nftforme.urjc.objetos.Producto;
 import com.nftforme.urjc.repositorios.RepositorioProducto;
+import com.nftforme.urjc.security.UserComponent;
 
 @Controller
 public class ControladorNuevosProductos {
@@ -18,13 +17,13 @@ public class ControladorNuevosProductos {
 	private RepositorioProducto repoProd;
 		
 	@Autowired
-	private ControladorSesion infoControl;
+	private UserComponent infoControl;
 	
 	@GetMapping("/nuevoproducto")
 	public String nuevoproducto(Model model, HttpServletRequest request) {
-		if(infoControl.getLoginAdmin()) {
+		if(infoControl.isAdmin()) {
 			model.addAttribute("admin",true);
-		}else if(infoControl.getLogin()) {
+		}else if(infoControl.getLoggedUser()!=null) {
 			model.addAttribute("user",true);
 		}else {
 			model.addAttribute("normal",true);
@@ -42,9 +41,9 @@ public class ControladorNuevosProductos {
 		}catch(Exception ex){
 			model.addAttribute("resultado","error");
 		}
-		if(infoControl.getLoginAdmin()) {
+		if(infoControl.isAdmin()) {
 			model.addAttribute("admin",true);
-		}else if(infoControl.getLogin()) {
+		}else if(infoControl.getLoggedUser()!=null) {
 			model.addAttribute("user",true);
 		}else {
 			model.addAttribute("normal",true);
