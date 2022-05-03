@@ -33,7 +33,7 @@ public class ControladorNuevosProductos {
 		
 		return "nuevoproducto";
 	}
-	@CacheEvict("prod")
+	@CacheEvict(value = "prod", allEntries=true)
 	@GetMapping("/resultadonuevo")
 	public String resultadonuevo(Model model,@RequestParam String nombre, @RequestParam String autor, @RequestParam float precio,@RequestParam String categoria,@RequestParam String imagen) {
 		try {

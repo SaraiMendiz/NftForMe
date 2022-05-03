@@ -108,7 +108,7 @@ public class ControladorProductos {
 		}
 		return "verhash";
 	}
-	@CacheEvict("prod")
+	@CacheEvict(value = "prod", allEntries=true)
 	@GetMapping("/deleteproduct/{id}")
 	public String borrarProducto(@PathVariable Long id) {
 		repoProd.deleteById(id);
