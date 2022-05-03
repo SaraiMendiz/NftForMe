@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,7 +35,7 @@ public class ControladorProductos {
 			}	
 		}
 	}
-	
+	@Cacheable("prod")
 	@GetMapping("/productos")
 	public String productos(Model model) {
 		this.buscarCategorias();
@@ -103,7 +105,7 @@ public class ControladorProductos {
 		}
 		return "verhash";
 	}
-	
+	@CacheEvict(value = "prod", allEntries=true)
 	@GetMapping("/deleteproduct/{id}")
 	public String borrarProducto(@PathVariable Long id) {
 		repoProd.deleteById(id);

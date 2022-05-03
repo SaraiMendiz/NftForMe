@@ -2,6 +2,7 @@ package com.nftforme.urjc.controladores;
 
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,7 +32,7 @@ public class ControladorNuevosProductos {
 		
 		return "nuevoproducto";
 	}
-	
+	@CacheEvict(value = "prod", allEntries=true)
 	@GetMapping("/resultadonuevo")
 	public String resultadonuevo(Model model,@RequestParam String nombre, @RequestParam String autor, @RequestParam float precio,@RequestParam String categoria,@RequestParam String imagen) {
 		try {
