@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,7 +38,7 @@ public class ControladorCompra {
 	private SenderInterno senderInterno;
 	
 	
-
+	@Cacheable("emp")
 	@GetMapping("/mispedidos")
 	public String mispedidos(Model model) {
 		List<PedidosCliente> todos = repoPedidos.findAllByCliente(infoControl.getClienteActual());
@@ -55,6 +57,7 @@ public class ControladorCompra {
 		return "mispedidos";
 	}
 	
+	@Cacheable("car")
 	@GetMapping("/carrito")
 	public String carrito(Model model) {
 		List<CarritoCompra> todos = carrito.findAllByCliente(infoControl.getClienteActual());
@@ -104,6 +107,7 @@ public class ControladorCompra {
 		return "resultadoCarrito";
 	}
 	
+	@CacheEvict(value = "emp", allEntries=true)
 	@GetMapping("/moverapedido/{id}")
 	public String moverAPedido(Model model,@PathVariable Long id) {
 		repoPedidos.save(new PedidosCliente(infoControl.getClienteActual(),carrito.findByProducto(repoProd.findById(id)).get().getProducto()));
@@ -117,6 +121,7 @@ public class ControladorCompra {
 		return "redirect:/mispedidos";
 	}
 	
+	@CacheEvict(value = "car", allEntries=true)
 	@GetMapping("/deletebag/{id}")
 	public String borrarCarrito(Model model,@PathVariable Long id) {
 		carrito.deleteById(carrito.findByProducto(repoProd.findById(id)).get().getId());
