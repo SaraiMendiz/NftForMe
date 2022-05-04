@@ -163,3 +163,16 @@ En caso de que el usuario quiera comprar o vender un producto y contactar con el
 		server bbdd2 172.17.0.1:8005 check
   #### - Por ultimo arrancamos el contenedor con los puertos correspondientes para la entrada al haproxy, que tenemos especificados en el archivo de configuración
   	docker run --name haproxy -d -v {ruta-archivo.cfg}:/usr/local/etc/haproxy:ro -p 33060:33060 -p 80:80 -p 8443:8443 -p 8404:8404 -p 443:443 haproxytech/haproxy-alpine:2.4
+### Crear las webs y los servicios internos
+#### Creamos un archivo Dockerfile para cada jar, en el mismo directorio
+	FROM adoptopenjdk/openjdk11:latest
+	RUN sh -c 'mkdir /usr/app'
+	COPY ./{archivo-jar} /usr/app
+	ENTRYPOINT ["java", "-jar", "/usr/app/{archivo-jar}"]
+#### Construimos el contenedor
+	docker build -t araso2000/nftforme_web1:tag .
+#### Iniciamos el contenedor especificando los puertos que queremos parchear
+	docker run --name web1 -d -p 8001:80 araso2000/nftforme_web:1.1.9
+ 
+
+
