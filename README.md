@@ -86,6 +86,33 @@ En caso de que el usuario quiera comprar o vender un producto y contactar con el
 
  ### 6º Para acceder a la Web tecleamos:
  	https://localhost:8443/
- ## 🌐Infraestructura de la web
+  ## 🌐Infraestructura de la web
   <img width="1337" alt="Captura de Pantalla 2022-05-04 a las 19 49 12" src="https://user-images.githubusercontent.com/96995329/166754315-7234a575-8319-42b7-9458-40fee0523cba.png">
 
+## 🗄️Instanciar MySQL
+ #### - Creamos un contenedor (Docker) de MySQL persistente en el servidor maestro y esclavo usando un volumen:
+    docker run -d --rm --name mysql -e MYSQL_ROOT_PASSWORD=root -p 33060:3306 -v mysql_data:/var/lib/mysql mysql/mysql-   server:latest  
+#### - Accedemos al nuevo entorno (Docker) MySQL:
+    sudo docker exec -it mysql bash
+#### Entramos en la Base de Datos introduciendo posteriormente la contraseña:
+    mysql -uroot -p
+#### Creamos un usuario llamado 'test':
+    CREATE USER 'test'@'%' IDENTIFIED BY '******';
+#### Damos todos los permisos:
+    GRANT ALL ON *.* TO 'test'@'%';
+#### Creamos un usuario de réplica:
+    CREATE USER 'replicauser'@'51.91.183.157' IDENTIFIED WITH'mysql_native_password' BY '****';
+    GRANT REPLICATION SLAVE ON *.* TO'replicauser'@'51.91.183.157';
+#### En el servidor maestro añadimos el parámetro server-id en el fichero my.cnf:
+    cd /etc
+    echo 'server-id=1' >> my.cnf
+    echo 'log-bin=mysql-bin' >> my.cnf
+#### En el servidor esclavo añadimos el parámetro server-id en el fichero my.cnf
+    cd /etc/
+    echo 'server-id=2' >> my.cnf
+    echo 'log-bin=mysql-bin' >> my.cnf
+#### Arrancamos el esclavo
+    CHANGE MASTER TO MASTER_HOST='217.71.202.245', MASTER_PORT=33060, MASTER_USER='replicauser', MASTER_PASSWORD='*****', MASTER_LOG_FILE='mysql-bin.000009', MASTER_LOG_POS=2369;
+    START SLAVE;
+#### Reiniciamos maestro:
+    RESET MASTER;
