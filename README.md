@@ -117,16 +117,16 @@ En caso de que el usuario quiera comprar o vender un producto y contactar con el
 #### Reiniciamos maestro:
     RESET MASTER;
 ## Haproxy
-  ### - Cargamos el contenedor
+  #### - Cargamos el contenedor
   docker pull haproxytech/haproxy-alpine
-  ### - Creamos el Docker file
+  #### - Creamos el Docker file
   FROM haproxytech/haproxy-alpine:2.0
   COPY haproxy.cfg /usr/local/etc/haproxy/haproxy.cfg
-  ### - Contruimos el contenedor, en la ruta que queramos
+  #### - Contruimos el contenedor, en la ruta que queramos
   docker build -t {nombre-contenedor} {ruta}
-  ### - Copiamos el archivo haproxy.cfg a la ruta de nuestro contenedor y lo editamos
+  #### - Copiamos el archivo haproxy.cfg a la ruta de nuestro contenedor y lo editamos
   cp /usr/local/etc/haproxy/haproxy.cfg {ruta}
-  ### - Archivo haproxy.cfg
+  #### - Archivo haproxy.cfg
   global
 
 defaults
@@ -161,5 +161,5 @@ listen  mysql-cluster
 	balance roundrobin
 	server bbdd1 172.17.0.1:8004 check
 	server bbdd2 172.17.0.1:8005 check
-  ### - Por ultimo arrancamos el contenedor con los puertos correspondientes para la entrada al haproxy, que tenemos especificados en el archivo de configuración
+  #### - Por ultimo arrancamos el contenedor con los puertos correspondientes para la entrada al haproxy, que tenemos especificados en el archivo de configuración
   docker run --name haproxy -d -v {ruta-archivo.cfg}:/usr/local/etc/haproxy:ro -p 33060:33060 -p 80:80 -p 8443:8443 -p 8404:8404 -p 443:443 haproxytech/haproxy-alpine:2.4
