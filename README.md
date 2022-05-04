@@ -86,3 +86,6 @@ En caso de que el usuario quiera comprar o vender un producto y contactar con el
 
  ### 6º Para acceder a la Web tecleamos:
  	https://localhost:8443/
+  ##🌐Infraestructura de la web
+  <img width="1337" alt="Captura de Pantalla 2022-05-04 a las 19 49 12" src="https://user-images.githubusercontent.com/96995329/166754315-7234a575-8319-42b7-9458-40fee0523cba.png">
+
