@@ -19,15 +19,12 @@ public class UserComponent {
 	@Autowired 
 	private RepositorioWebUser repoUser;
 	
-	@Autowired 
-	private RepositorioWebUserAuthProvider auth;
 	
 	public WebUser getLoggedUser() {
 		Optional<WebUser> temp = null;
 		if(userLog.findAll().size()!=0) {
 			temp = repoUser.findByName(userLog.findAll().get(0).getName());
 			if(temp.isPresent()) {
-				auth.setUser(temp.get());
 				return temp.get();
 			}else {
 				return null;
