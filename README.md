@@ -116,3 +116,50 @@ En caso de que el usuario quiera comprar o vender un producto y contactar con el
     START SLAVE;
 #### Reiniciamos maestro:
     RESET MASTER;
+## Haproxy
+  ### - Cargamos el contenedor
+  docker pull haproxytech/haproxy-alpine
+  ### - Creamos el Docker file
+  FROM haproxytech/haproxy-alpine:2.0
+  COPY haproxy.cfg /usr/local/etc/haproxy/haproxy.cfg
+  ### - Contruimos el contenedor, en la ruta que queramos
+  docker build -t {nombre-contenedor} {ruta}
+  ### - Copiamos el archivo haproxy.cfg a la ruta de nuestro contenedor y lo editamos
+  cp /usr/local/etc/haproxy/haproxy.cfg {ruta}
+  ### - Archivo haproxy.cfg
+  global
+
+defaults
+
+listen stats
+    mode http
+	bind *:8404  
+	stats enable
+	stats refresh 5s
+	stats show-legends
+	stats uri /stats
+
+frontend sok-front-end
+    bind *:80
+    bind *:443 ssl crt /usr/local/etc/haproxy/prueba.pem
+    acl https ssl_fc
+    http-request set-header X-Forwarded-Proto http  if !https
+    http-request set-header X-Forwarded-Proto https if https
+    mode http
+    default_backend sok-backend-end
+
+backend sok-backend-end
+    mode http
+    balance roundrobin 
+    server web1 172.17.0.1:8001 check
+    server web2 172.17.0.1:8002 check
+
+listen  mysql-cluster
+	bind *:33060
+	mode tcp
+	option mysql-check
+	balance roundrobin
+	server bbdd1 172.17.0.1:8004 check
+	server bbdd2 172.17.0.1:8005 check
+  ### - Por ultimo arrancamos el contenedor con los puertos correspondientes para la entrada al haproxy, que tenemos especificados en el archivo de configuración
+  docker run --name haproxy -d -v {ruta-archivo.cfg}:/usr/local/etc/haproxy:ro -p 33060:33060 -p 80:80 -p 8443:8443 -p 8404:8404 -p 443:443 haproxytech/haproxy-alpine:2.4
