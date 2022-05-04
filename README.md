@@ -174,5 +174,10 @@ En caso de que el usuario quiera comprar o vender un producto y contactar con el
 #### Iniciamos el contenedor especificando los puertos que queremos parchear
 	docker run --name web1 -d -p 8001:80 araso2000/nftforme_web:1.1.9
  
+### RabbitMq en contenedor
+#### Cogemos la imagen de docker
+	docker pull rabbitmq
+#### Iniciamos el contenedor
+	docker run --rm -d -it --name rabbit --hostname my-rabbit -p 5672:5672 -p 15672:15672 rabbitmq:3-management
 
 
