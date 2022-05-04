@@ -48,6 +48,7 @@ public class ControladorProductos {
 		}
 		model.addAttribute("producto", prodNoComprados);
 		model.addAttribute("filtro", listaProd);
+		
 		if(infoControl.isAdmin()) {
 			model.addAttribute("admin",true);
 		}else if(infoControl.getLoggedUser()!=null) {
@@ -69,6 +70,7 @@ public class ControladorProductos {
 		}
 		model.addAttribute("categoriaP", prodNoComprados);
 		model.addAttribute("filtro", listaProd);
+		
 		if(infoControl.isAdmin()) {
 			model.addAttribute("admin",true);
 		}else if(infoControl.getLoggedUser()!=null) {
@@ -83,6 +85,7 @@ public class ControladorProductos {
 	public String verProducto(Model model,@PathVariable String nombre) {
 		List <Producto> nombreAnimals = repoProd.findByNombre(nombre);
 		model.addAttribute("nombreP", nombreAnimals);
+		
 		if(infoControl.isAdmin()) {
 			model.addAttribute("admin",true);
 		}else if(infoControl.getLoggedUser()!=null) {
@@ -96,15 +99,18 @@ public class ControladorProductos {
 	@GetMapping("/hash/{id}")
 	public String hash(Model model,@PathVariable Long id) {
 		model.addAttribute("hash", repoProd.findById(id).get().getHash());
+		
+		String web = "verhash";
 		if(infoControl.isAdmin()) {
 			model.addAttribute("admin",true);
 		}else if(infoControl.getLoggedUser()!=null) {
 			model.addAttribute("user",true);
 		}else {
-			model.addAttribute("normal",true);
+			web = "error";
 		}
-		return "verhash";
+		return web;
 	}
+	
 	@CacheEvict(value = "prod", allEntries=true)
 	@GetMapping("/deleteproduct/{id}")
 	public String borrarProducto(@PathVariable Long id) {

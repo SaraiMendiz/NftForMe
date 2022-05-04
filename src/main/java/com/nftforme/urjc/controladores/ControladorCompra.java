@@ -48,14 +48,16 @@ public class ControladorCompra {
 			productos.add(temp.getProducto());
 		}
 		model.addAttribute("producto", productos);
+		
+		String web = "mispedidos";
 		if(infoControl.isAdmin()) {
 			model.addAttribute("admin",true);
 		}else if(infoControl.getLoggedUser()!=null) {
 			model.addAttribute("user",true);
 		}else {
-			model.addAttribute("normal",true);
+			web = "error";
 		}
-		return "mispedidos";
+		return web;
 	}
 	
 	@Cacheable("car")
@@ -68,14 +70,15 @@ public class ControladorCompra {
 		}
 		model.addAttribute("producto", productos);
 		
+		String web = "carrito";
 		if(infoControl.isAdmin()) {
 			model.addAttribute("admin",true);
 		}else if(infoControl.getLoggedUser()!=null) {
 			model.addAttribute("user",true);
 		}else {
-			model.addAttribute("normal",true);
+			web = "error";
 		}
-		return "carrito";
+		return web;
 	}
 	
 	@GetMapping("/buy/{id}")
@@ -92,14 +95,15 @@ public class ControladorCompra {
 			model.addAttribute("comprobar",true);
 		}		
 		
+		String web = "resultadoCarrito";
 		if(infoControl.isAdmin()) {
 			model.addAttribute("admin",true);
 		}else if(infoControl.getLoggedUser()!=null) {
 			model.addAttribute("user",true);
 		}else {
-			model.addAttribute("normal",true);
+			web = "error";
 		}
-		return "resultadoCarrito";
+		return web;
 	}
 	
 	@CacheEvict(value = "emp", allEntries=true)

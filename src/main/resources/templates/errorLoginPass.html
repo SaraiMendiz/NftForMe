@@ -12,28 +12,17 @@
         <div class="card border-0 shadow rounded-3 my-5">
           <div class="card-body p-4 p-sm-5">
           <h5 class ="card-title text-center mb-5 fs-5"> NftForMe </h5>
-            <h5 class="card-title text-center mb-7 fs-5">Registrarse</h5>
+            <h5 class="card-title text-center mb-7 fs-5">ERROR</h5>
             <br>
-            <form action="nuevouser" method="post">
-              <div class="form-floating mb-3">
-                <input name="name" type="text" class="form-control" id="floatingInput" placeholder="usuario" required>
-                <label for="floatingInput">Nombre de Usuario</label>
-              </div>
-              <div class="form-floating mb-3">
-                <input name="passwordHash" type="password" class="form-control" id="floatingPassword" placeholder="Password" required>
-                <label for="floatingPassword">Contraseña</label>
-              </div>
-              <input type="hidden" name="_csrf" value="{{token}}"/>
-              <div class="d-grid">
-                <button class="btn btn-primary btn-login text-uppercase fw-bold" type="submit">Registrar</button>
+            <h6 class="card-title text-center mb-7 fs-5">Contraseña incorrecta</h6>
+            <br>
+            <div class="d-grid">
+                <button onclick="window.location.href='/login'" class="btn btn-primary btn-login text-uppercase fw-bold" type="submit">Intentar de nuevo</button>
               </div>
               <br>
               <div class="d-grid">
                 <button onclick="window.location.href='/'" class="btn btn-primary btn-login text-uppercase fw-bold" type="submit">Volver a inicio</button>
               </div>
-              <hr class="my-4">
-              
-            </form>
           </div>
         </div>
       </div>

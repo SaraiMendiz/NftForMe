@@ -32,14 +32,15 @@ public class ControladorBasico {
 	
 	@GetMapping("/micuenta")
 	public String micuenta(Model model) {
+		String web = "micuenta";
 		if(infoControl.isAdmin()) {
 			model.addAttribute("admin",true);
 		}else if(infoControl.getLoggedUser()!=null) {
 			model.addAttribute("user",true);
 		}else {
-			model.addAttribute("normal",true);
+			web = "error";
 		}
-		return "micuenta";
+		return web;
 	}
 	
 	@GetMapping("/ayuda")

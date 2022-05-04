@@ -1,5 +1,7 @@
 package com.nftforme.urjc.security;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.SessionScope;
@@ -21,10 +23,12 @@ public class UserComponent {
 	private RepositorioWebUserAuthProvider auth;
 	
 	public WebUser getLoggedUser() {
+		Optional<WebUser> temp = null;
 		if(userLog.findAll().size()!=0) {
-			if(repoUser.findByName(userLog.findAll().get(0).getName()).isPresent()) {
-				auth.setUser(repoUser.findByName(userLog.findAll().get(0).getName()).get());
-				return repoUser.findByName(userLog.findAll().get(0).getName()).get();
+			temp = repoUser.findByName(userLog.findAll().get(0).getName());
+			if(temp.isPresent()) {
+				auth.setUser(temp.get());
+				return temp.get();
 			}else {
 				return null;
 			}

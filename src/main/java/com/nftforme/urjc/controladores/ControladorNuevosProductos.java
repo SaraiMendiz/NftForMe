@@ -22,15 +22,15 @@ public class ControladorNuevosProductos {
 	
 	@GetMapping("/nuevoproducto")
 	public String nuevoproducto(Model model, HttpServletRequest request) {
+		String web = "nuevoproducto";
 		if(infoControl.isAdmin()) {
 			model.addAttribute("admin",true);
 		}else if(infoControl.getLoggedUser()!=null) {
 			model.addAttribute("user",true);
 		}else {
-			model.addAttribute("normal",true);
+			web = "error";
 		}
-		
-		return "nuevoproducto";
+		return web;
 	}
 	@CacheEvict(value = "prod", allEntries=true)
 	@GetMapping("/resultadonuevo")
@@ -42,13 +42,14 @@ public class ControladorNuevosProductos {
 		}catch(Exception ex){
 			model.addAttribute("resultado","error");
 		}
+		String web = "resultadonuevo";
 		if(infoControl.isAdmin()) {
 			model.addAttribute("admin",true);
 		}else if(infoControl.getLoggedUser()!=null) {
 			model.addAttribute("user",true);
 		}else {
-			model.addAttribute("normal",true);
+			web = "error";
 		}
-		return("resultadonuevo");
+		return web;
 	}
 }
