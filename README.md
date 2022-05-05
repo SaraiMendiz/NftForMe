@@ -116,7 +116,7 @@ En caso de que el usuario quiera comprar o vender un producto y contactar con el
     START SLAVE;
 #### Reiniciamos maestro:
     RESET MASTER;
-## Haproxy
+## 🖥️Haproxy
   #### - Cargamos el contenedor
   	docker pull haproxytech/haproxy-alpine
   #### - Creamos el Docker file
