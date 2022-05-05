@@ -180,4 +180,12 @@ En caso de que el usuario quiera comprar o vender un producto y contactar con el
 #### Iniciamos el contenedor
 	docker run --rm -d -it --name rabbit --hostname my-rabbit -p 5672:5672 -p 15672:15672 rabbitmq:3-management
 
-
+## 📜Diagramas UML Actualizados
+#### 📁Objetos
+![DiagramaObjetos](https://user-images.githubusercontent.com/73581636/166884715-b7b759fc-fbde-406f-a991-cac0486582ed.png)
+#### 📁Controladores
+![Diagrama Controladores](https://user-images.githubusercontent.com/73581636/166884851-acb0bc10-4dcc-4e66-a452-6df82714d684.png)
+#### 📁Repositorios
+![DiagramaRepositorias](https://user-images.githubusercontent.com/73581636/166884918-f270487e-6e87-42dd-9574-a036a94de665.png)
+#### 📁Seguridad
+![DiagramaSeguridad](https://user-images.githubusercontent.com/73581636/166884988-8586207c-26b7-45a2-9acb-26a9b0d6bd1a.png)
