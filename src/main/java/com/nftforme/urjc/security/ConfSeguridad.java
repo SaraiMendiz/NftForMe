@@ -18,8 +18,8 @@ public class ConfSeguridad  extends WebSecurityConfigurerAdapter{
 		http.authorizeRequests().antMatchers("/mispedidos").permitAll();
 		http.authorizeRequests().antMatchers("/carrito").permitAll();
 		http.authorizeRequests().antMatchers("/buy/{id}").permitAll();
-		http.authorizeRequests().antMatchers("/moverapedido").permitAll();
-		http.authorizeRequests().antMatchers("/deletebag").permitAll();
+		http.authorizeRequests().antMatchers("/moverapedido/{id}").permitAll();
+		http.authorizeRequests().antMatchers("/deletebag/{id}").permitAll();
 		
 		http.authorizeRequests().antMatchers("/nuevoproducto").permitAll();
 		http.authorizeRequests().antMatchers("/resultadonuevo").permitAll();

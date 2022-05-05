@@ -45,9 +45,9 @@ public class ControladorSesion {
 		return "login";
 	}
 	
-	@PostMapping("/nuevouser")
-	public String nuevouser(Model model,WebUser temp) {
-		temp.setRolUser();
+	@GetMapping("/nuevouser")
+	public String nuevouser(Model model,@RequestParam String name,@RequestParam String pass) {
+		WebUser temp = new WebUser(name,pass,"USER");
 		clienteRepo.save(temp);
 		return "redirect:/";
 	}

@@ -20,6 +20,7 @@ public class WebUser {
 	private String name;
 	private String passwordHash;
 	private boolean rolAdmin;
+	private boolean login_in; 
 	
 	@ElementCollection(fetch = FetchType.EAGER)
 	private List<String> roles = new ArrayList<>();
@@ -36,6 +37,7 @@ public class WebUser {
 		this.name=user;
 		this.passwordHash=new BCryptPasswordEncoder().encode(pass);
 		this.roles.add(rol1);
+		this.login_in=false;
 	}
 
 	public WebUser() {
