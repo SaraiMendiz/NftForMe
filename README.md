@@ -2,8 +2,8 @@
 ## Video Demo de la Web en YouTube
 https://youtu.be/eo0ouXwO1PI
 ## Docker Hub
-https://hub.docker.com/r/araso2000/nftforme_web
-https://hub.docker.com/r/araso2000/nftforme_interno/tags
+- https://hub.docker.com/r/araso2000/nftforme_web
+- https://hub.docker.com/r/araso2000/nftforme_interno/tags
 ## 📝Descripción
 NftForMe es una página Web donde se podrán comprar o vender NFTs ( Non-Fungible Token). 
 ## 🔓Funcionalidades Públicas
